@@ -10,39 +10,15 @@ export const ProgressSlider = glamorous.div({
   position: 'relative',
   float: 'none',
   marginBottom: 50,
-  width: '100%',
   height: 14,
   boxSizing: 'border-box',
-  cursor: 'pointer',
-  transition,
-  [mediaQuery(768)]: {
-    display: 'none'
-  }
-}, ({ readOnly, backgroundColor, part }) => {
-  const styles = [];
-  if (readOnly) styles.push({ cursor: 'auto' });
-  styles.push({ backgroundColor });
-  if (part) {
-    styles.push({
-      float: 'right',
-      marginTop: 1,
-      marginBottom: 0,
-      width: '50%',
-      cursor: 'pointer',
-      [mediaQuery(1024)]: {
-        width: '40%'
-      }
-    });
-  } else {
-    styles.push({
-      [mediaQuery(1024)]: {
-        display: 'none'
-      }
-    });
-  }
-
-  return styles;
-});
+  transition
+}, ({ readOnly, width, height, backgroundColor }) => ({
+  width,
+  height,
+  backgroundColor,
+  cursor: readOnly ? 'auto' : 'pointer'
+}));
 
 const Dot = glamorous.span({
   position: 'absolute',
@@ -66,8 +42,9 @@ export const Progress = glamorous.div({
   right: 0,
   height: 14,
   transition
-}, ({ color, progress, equal, equalColor, most }) => ({
+}, ({ color, progress, height, equal, equalColor, most }) => ({
   width: `${progress || 0}%`,
+  height,
   backgroundColor: equal && equalColor ? equalColor : color,
   zIndex: most ? 1 : 2
 }));
@@ -85,14 +62,20 @@ export default class DoubleSlider extends Component {
       }).isRequired
     ).isRequired,
     activeSlider: PropTypes.oneOf([0, 1]).isRequired,
+    width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
+    sliderStyle: PropTypes.object,
     onSlide: PropTypes.func.isRequired,
     readOnly: PropTypes.bool
   };
 
   static defaultProps = {
+    width: '100%',
+    height: 14,
     backgroundColor: '#EEEEEE',
+    sliderStyle: {},
     readOnly: false
   };
 
@@ -126,7 +109,7 @@ export default class DoubleSlider extends Component {
   progressFromMousePos = (e, sliderEl) => {
     const boundingRect = sliderEl.getBoundingClientRect();
     const mouseFromLeft = e.pageX - boundingRect.left;
-    const progressFromLeft = mouseFromLeft / sliderEl.offsetWidth;
+    const progressFromLeft = mouseFromLeft / boundingRect.width;
     // Return progress in percents
     return limitProgress(Math.round((1 - progressFromLeft) * 100));
   };
@@ -152,14 +135,25 @@ export default class DoubleSlider extends Component {
   };
 
   render = () => {
-    const { sliders, backgroundColor, equalColor, readOnly } = this.props;
+    const {
+      sliders,
+      width,
+      height,
+      backgroundColor,
+      equalColor,
+      sliderStyle,
+      readOnly
+    } = this.props;
     const mostProgress = this.mostProgress();
     const slidersEqual = this.slidersEqual();
 
     return (
       <ProgressSlider
-        readOnly={readOnly}
+        width={width}
+        height={height}
         backgroundColor={backgroundColor}
+        css={sliderStyle}
+        readOnly={readOnly}
         onClick={this.handleSliderClick}
       >
         {sliders.map((slider, i) =>
@@ -168,9 +162,10 @@ export default class DoubleSlider extends Component {
               className="progress"
               color={slider.color}
               progress={slider.progress}
-              most={i === mostProgress}
+              height={height}
               equal={slidersEqual}
               equalColor={equalColor}
+              most={i === mostProgress}
             />
             {slider.dot && (
               <Dot className="dot" right={slider.progress}>
