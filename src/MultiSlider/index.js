@@ -1,23 +1,12 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
-import transition from './utils/transition';
 import getProgressFromMousePosition from './utils/getProgressFromMousePosition';
 import slidersEqual from './utils/slidersEqual';
 import sortSliders from './utils/sortSliders';
 import sliderPropType from './utils/sliderPropType';
+import Slider from './Slider';
 import Progress from './Progress';
-
-export const ProgressSlider = glamorous.div({
-  height: 14,
-  boxSizing: 'border-box',
-  transition
-}, ({ readOnly, width, height, backgroundColor }) => ({
-  width,
-  height,
-  backgroundColor,
-  cursor: readOnly ? 'auto' : 'pointer'
-}));
 
 export const SlidableZone = glamorous.div({
   position: 'absolute',
@@ -28,7 +17,7 @@ export const SlidableZone = glamorous.div({
   zIndex: sliderCount
 }));
 
-export default class MultiSlider extends Component {
+export default class MultiSlider extends PureComponent {
   static propTypes = {
     sliders: PropTypes.arrayOf(sliderPropType).isRequired,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -52,7 +41,7 @@ export default class MultiSlider extends Component {
 
   state = { mouseDown: false };
 
-  handleSliderClick = (e) => {
+  handleSlide = (e) => {
     const { onSlide, readOnly } = this.props;
     if (readOnly) return;
 
@@ -60,12 +49,12 @@ export default class MultiSlider extends Component {
     onSlide(newProgress);
   };
 
-  handleSliderMouseDown = () => this.setState({ mouseDown: true });
-  handleSliderMouseUp = () => this.setState({ mouseDown: false });
+  handleMouseMoveActivate = () => this.setState({ mouseDown: true });
+  handleMouseMoveDeactivate = () => this.setState({ mouseDown: false });
 
-  handleSliderMouseMove = (e) => {
+  handleMouseMove = (e) => {
     if (!this.state.mouseDown) return;
-    this.handleSliderClick(e);
+    this.handleSlide(e);
   };
 
   render = () => {
@@ -82,17 +71,16 @@ export default class MultiSlider extends Component {
     const sortedSliders = sortSliders(sliders);
 
     return (
-      <ProgressSlider
+      <Slider
         width={width}
         height={height}
         backgroundColor={backgroundColor}
-        css={sliderStyle}
+        sliderStyle={sliderStyle}
+        onSlide={this.handleSlide}
+        onMouseMoveActivate={this.handleMouseMoveActivate}
+        onMouseMoveDeactivate={this.handleMouseMoveDeactivate}
+        onMouseMove={this.handleMouseMove}
         readOnly={readOnly}
-        onClick={this.handleSliderClick}
-        onMouseDown={this.handleSliderMouseDown}
-        onMouseUp={this.handleSliderMouseUp}
-        onMouseLeave={this.handleSliderMouseUp}
-        onMouseMove={this.handleSliderMouseMove}
       >
         {sliders.map((slider, i) =>
           <Progress
@@ -106,7 +94,7 @@ export default class MultiSlider extends Component {
           />
         )}
         <SlidableZone size={slidableZoneSize} sliderCount={sliders.length} />
-      </ProgressSlider>
+      </Slider>
     );
   };
 }
