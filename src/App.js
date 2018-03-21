@@ -48,6 +48,7 @@ export default class App extends Component {
         equalColor="blue"
         progress={this.state.progress}
         onSlide={this.onSlide}
+        roundedCorners
       />
     </Container>
   );

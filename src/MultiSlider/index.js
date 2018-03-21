@@ -1,21 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
 import getProgressFromMousePosition from './utils/getProgressFromMousePosition';
 import slidersEqual from './utils/slidersEqual';
 import sortSliders from './utils/sortSliders';
 import sliderPropType from './utils/sliderPropType';
 import Slider from './Slider';
 import Progress from './Progress';
-
-export const SlidableZone = glamorous.div({
-  position: 'absolute',
-  width: '100%'
-}, ({ size, sliderCount }) => ({
-  top: -size,
-  bottom: -size,
-  zIndex: sliderCount
-}));
+import SlidableZone from './SlidableZone';
 
 export default class MultiSlider extends PureComponent {
   static propTypes = {
@@ -27,6 +18,7 @@ export default class MultiSlider extends PureComponent {
     equalColor: PropTypes.string,
     sliderStyle: PropTypes.object,
     onSlide: PropTypes.func.isRequired,
+    roundedCorners: PropTypes.bool,
     readOnly: PropTypes.bool
   };
 
@@ -35,6 +27,7 @@ export default class MultiSlider extends PureComponent {
     height: 14,
     slidableZoneSize: 7,
     backgroundColor: '#EEEEEE',
+    roundedCorners: false,
     sliderStyle: {},
     readOnly: false
   };
@@ -65,9 +58,11 @@ export default class MultiSlider extends PureComponent {
       slidableZoneSize,
       backgroundColor,
       equalColor,
+      roundedCorners,
       sliderStyle,
       readOnly
     } = this.props;
+    const allSlidersEqual = slidersEqual(sliders);
     const sortedSliders = sortSliders(sliders);
 
     return (
@@ -80,20 +75,22 @@ export default class MultiSlider extends PureComponent {
         onMouseMoveActivate={this.handleMouseMoveActivate}
         onMouseMoveDeactivate={this.handleMouseMoveDeactivate}
         onMouseMove={this.handleMouseMove}
+        roundedCorners={roundedCorners}
         readOnly={readOnly}
       >
         {sliders.map((slider, i) =>
           <Progress
             slider={slider}
             height={height}
-            slidersEqual={slidersEqual(sliders)}
+            slidersEqual={allSlidersEqual}
             equalColor={equalColor}
-            sortedSliders={sortedSliders}
+            roundedCorners={roundedCorners}
             mouseDown={this.state.mouseDown}
+            zIndex={sortedSliders.indexOf(slider)}
             key={i}
           />
         )}
-        <SlidableZone size={slidableZoneSize} sliderCount={sliders.length} />
+        <SlidableZone size={slidableZoneSize} zIndex={sliders.length} />
       </Slider>
     );
   };

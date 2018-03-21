@@ -3,27 +3,42 @@ import PropTypes from 'prop-types';
 import sliderPropType from './utils/sliderPropType';
 import glamorous from 'glamorous';
 import transition from './utils/transition';
+import getHalf from './utils/getHalf';
 import Dot from './Dot';
 
-export const StyledProgress = glamorous.div({
-  position: 'absolute',
-  top: 0,
-  right: 0
-}, ({ color, progress, height, equal, equalColor, zIndex, noTransition }) => ({
-  width: `${progress || 0}%`,
-  height,
-  backgroundColor: equal && equalColor ? equalColor : color,
-  zIndex,
-  transition: noTransition ? 'none' : transition
-}));
+const StyledProgress = glamorous.div(
+  {
+    position: 'absolute',
+    top: 0,
+    right: 0
+  },
+  ({
+    color,
+    progress,
+    height,
+    equal,
+    equalColor,
+    roundedCorners,
+    zIndex,
+    noTransition
+  }) => ({
+    width: `${progress || 0}%`,
+    height,
+    backgroundColor: equal && equalColor ? equalColor : color,
+    borderRadius: roundedCorners ? getHalf(height) : 0,
+    zIndex,
+    transition: noTransition ? 'none' : transition
+  })
+);
 
 const Progress = ({
   slider,
   height,
   slidersEqual,
   equalColor,
-  sortedSliders,
-  mouseDown
+  roundedCorners,
+  mouseDown,
+  zIndex
 }) => (
   <Fragment>
     <StyledProgress
@@ -33,7 +48,8 @@ const Progress = ({
       height={height}
       equal={slidersEqual}
       equalColor={equalColor}
-      zIndex={sortedSliders.indexOf(slider)}
+      roundedCorners={roundedCorners}
+      zIndex={zIndex}
       noTransition={mouseDown}
     />
     {slider.dot && (
@@ -52,8 +68,9 @@ Progress.propTypes = {
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   slidersEqual: PropTypes.bool.isRequired,
   equalColor: PropTypes.string.isRequired,
-  sortedSliders: PropTypes.arrayOf(sliderPropType).isRequired,
-  mouseDown: PropTypes.bool.isRequired
+  roundedCorners: PropTypes.bool.isRequired,
+  mouseDown: PropTypes.bool.isRequired,
+  zIndex: PropTypes.number.isRequired
 };
 
 export default Progress;
