@@ -124,7 +124,8 @@ export default class DoubleSlider extends Component {
   };
 
   progressFromMousePos = (e, sliderEl) => {
-    const mouseFromLeft = e.pageX - 39;
+    const boundingRect = sliderEl.getBoundingClientRect();
+    const mouseFromLeft = e.pageX - boundingRect.left;
     const progressFromLeft = mouseFromLeft / sliderEl.offsetWidth;
     // Return progress in percents
     return limitProgress(Math.round((1 - progressFromLeft) * 100));
