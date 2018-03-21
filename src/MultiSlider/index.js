@@ -16,7 +16,7 @@ export default class MultiSlider extends PureComponent {
     slidableZoneSize: PropTypes.number,
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
-    sliderStyle: PropTypes.object,
+    style: PropTypes.object,
     onSlide: PropTypes.func.isRequired,
     roundedCorners: PropTypes.bool,
     readOnly: PropTypes.bool
@@ -28,7 +28,7 @@ export default class MultiSlider extends PureComponent {
     slidableZoneSize: 7,
     backgroundColor: '#EEEEEE',
     roundedCorners: false,
-    sliderStyle: {},
+    style: {},
     readOnly: false
   };
 
@@ -59,7 +59,7 @@ export default class MultiSlider extends PureComponent {
       backgroundColor,
       equalColor,
       roundedCorners,
-      sliderStyle,
+      style,
       readOnly
     } = this.props;
     const allSlidersEqual = slidersEqual(sliders);
@@ -70,7 +70,7 @@ export default class MultiSlider extends PureComponent {
         width={width}
         height={height}
         backgroundColor={backgroundColor}
-        sliderStyle={sliderStyle}
+        style={style}
         onSlide={this.handleSlide}
         onMouseMoveActivate={this.handleMouseMoveActivate}
         onMouseMoveDeactivate={this.handleMouseMoveDeactivate}

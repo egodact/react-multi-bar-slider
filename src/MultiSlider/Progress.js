@@ -51,6 +51,7 @@ const Progress = ({
       roundedCorners={roundedCorners}
       zIndex={zIndex}
       noTransition={mouseDown}
+      css={slider.style}
     />
     {slider.dot && (
       <Dot

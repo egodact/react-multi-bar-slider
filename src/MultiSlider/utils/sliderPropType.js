@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 const sliderPropType = PropTypes.shape({
   color: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
+  style: PropTypes.object,
   dot: PropTypes.oneOfType([
     PropTypes.shape({
       color: PropTypes.string,
