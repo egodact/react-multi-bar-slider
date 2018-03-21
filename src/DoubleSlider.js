@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
 
-export const mediaQuery = px => `@media screen and (max-width: ${px}px)`;
-
 export const transition = 'all 450ms cubic-bezier(.23, 1, .32, 1) 0ms';
 
 export const ProgressSlider = glamorous.div({
@@ -49,11 +47,11 @@ export const Progress = glamorous.div({
   right: 0,
   height: 14,
   transition
-}, ({ color, progress, height, equal, equalColor, most }) => ({
+}, ({ color, progress, height, equal, equalColor, zIndex }) => ({
   width: `${progress || 0}%`,
   height,
   backgroundColor: equal && equalColor ? equalColor : color,
-  zIndex: most ? 1 : 2
+  zIndex
 }));
 
 const limitProgress = progress => Math.max(Math.min(progress, 100), 0);
@@ -74,7 +72,7 @@ export default class DoubleSlider extends Component {
         ])
       }).isRequired
     ).isRequired,
-    activeSlider: PropTypes.oneOf([0, 1]).isRequired,
+    activeSlider: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     backgroundColor: PropTypes.string,
@@ -85,6 +83,7 @@ export default class DoubleSlider extends Component {
   };
 
   static defaultProps = {
+    activeSlider: 0,
     width: '100%',
     height: 14,
     backgroundColor: '#EEEEEE',
@@ -127,14 +126,9 @@ export default class DoubleSlider extends Component {
     return limitProgress(Math.round((1 - progressFromLeft) * 100));
   };
 
-  mostProgress = () => {
-    const sliders = this.props.sliders;
-    const most = sliders.reduce(
-      (acc, slider, i) =>
-        slider.progress > acc[1] ? [i, slider.progress] : acc,
-      [0, 0]
-    );
-    return most[0];
+  sortSliders = () => {
+    const sliders = [...this.props.sliders];
+    return sliders.sort((a, b) => b.progress - a.progress);
   };
 
   slidersEqual = () => {
@@ -157,8 +151,8 @@ export default class DoubleSlider extends Component {
       sliderStyle,
       readOnly
     } = this.props;
-    const mostProgress = this.mostProgress();
     const slidersEqual = this.slidersEqual();
+    const sortedSliders = this.sortSliders();
 
     return (
       <ProgressSlider
@@ -178,7 +172,7 @@ export default class DoubleSlider extends Component {
               height={height}
               equal={slidersEqual}
               equalColor={equalColor}
-              most={i === mostProgress}
+              zIndex={sortedSliders.indexOf(slider)}
             />
             {slider.dot && (
               <Dot
