@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DoubleSlider from './DoubleSlider';
+import MultiSlider from './MultiSlider';
 import studentIcon from './student.png';
 import coachIcon from './coach.png';
 import glamorous from 'glamorous';
@@ -25,7 +25,7 @@ export default class App extends Component {
 
   render = () => (
     <Container>
-      <DoubleSlider
+      <MultiSlider
         sliders={[
           {
             color: 'green',
