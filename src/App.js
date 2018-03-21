@@ -29,7 +29,7 @@ export default class App extends Component {
         sliders={[
           {
             color: 'green',
-            progress: 87,
+            progress: this.state.progress,
             dot: {
               icon: studentIcon,
               iconStyle: { bottom: -7 }
@@ -42,14 +42,9 @@ export default class App extends Component {
               icon: coachIcon,
               iconStyle: { top: 7 }
             }
-          },
-          {
-            color: 'orange',
-            progress: this.state.progress,
-            dot: true
-          },
+          }
         ]}
-        activeSlider={2}
+        slidableZoneSize={50}
         equalColor="blue"
         progress={this.state.progress}
         onSlide={this.onSlide}
