@@ -22,19 +22,26 @@ export const ProgressSlider = glamorous.div({
 
 const Dot = glamorous.span({
   position: 'absolute',
-  top: 0,
-  transform: 'translateX(-50%)',
   display: 'block',
   zIndex: 5,
+  borderRadius: '50%',
   transition
-}, ({ right }) => [{ right: `${right || 0}%` }]);
+}, ({ right, hasIcon, width, height, color }) => ({
+  top: hasIcon ? 0 : '50%',
+  right: `${right || 0}%`,
+  transform: hasIcon ? 'translateX(-50%)' : 'translate(50%, -50%)',
+  width: hasIcon ? 0 : width,
+  height: hasIcon ? 0 : height,
+  backgroundColor: hasIcon ? 'transparent' : color
+}));
 
 const DotIcon = glamorous.img({
   position: 'absolute',
-  transform: 'translateX(-50%)',
-  width: 50,
-  height: 50
-});
+  transform: 'translateX(-50%)'
+}, ({ width, height }) => ({
+  width,
+  height
+}));
 
 export const Progress = glamorous.div({
   position: 'absolute',
@@ -57,8 +64,14 @@ export default class DoubleSlider extends Component {
       PropTypes.shape({
         color: PropTypes.string.isRequired,
         progress: PropTypes.number.isRequired,
-        dot: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-        dotColor: PropTypes.string
+        dot: PropTypes.oneOfType([
+          PropTypes.shape({
+            color: PropTypes.string,
+            icon: PropTypes.string,
+            style: PropTypes.object
+          }),
+          PropTypes.bool
+        ])
       }).isRequired
     ).isRequired,
     activeSlider: PropTypes.oneOf([0, 1]).isRequired,
@@ -168,12 +181,24 @@ export default class DoubleSlider extends Component {
               most={i === mostProgress}
             />
             {slider.dot && (
-              <Dot className="dot" right={slider.progress}>
-                <DotIcon
-                  className="icon"
-                  src={slider.dot}
-                  css={slider.dotStyle}
-                />
+              <Dot
+                className="dot"
+                right={slider.progress}
+                hasIcon={!!slider.dot.icon}
+                width={slider.dot.width || 28}
+                height={slider.dot.height || 28}
+                color={slider.dot.color || slider.color}
+                css={slider.dot.style}
+              >
+                {slider.dot.icon && (
+                  <DotIcon
+                    className="icon"
+                    src={slider.dot.icon}
+                    width={slider.dot.width || 50}
+                    height={slider.dot.height || 50}
+                    css={slider.dot.iconStyle}
+                  />
+                )}
               </Dot>
             )}
           </Fragment>

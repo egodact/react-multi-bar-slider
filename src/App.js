@@ -30,14 +30,18 @@ export default class App extends Component {
           {
             color: 'green',
             progress: this.state.progress,
-            dot: studentIcon,
-            dotStyle: { bottom: -7 }
+            dot: {
+              icon: studentIcon,
+              iconStyle: { bottom: -7 }
+            }
           },
           {
             color: 'purple',
             progress: 45,
-            dot: coachIcon,
-            dotStyle: { top: 7 }
+            dot: {
+              icon: coachIcon,
+              iconStyle: { top: 7 }
+            }
           }
         ]}
         activeSlider={0}
