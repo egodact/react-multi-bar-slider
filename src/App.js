@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import DoubleSlider from './DoubleSlider';
+import studentIcon from './student.png';
+import coachIcon from './coach.png';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+export default class App extends Component {
+  state = {
+    progress: 10
+  };
+
+  onSlide = (progress) => {
+    this.setState({ progress })
+  };
+
+  render = () => (
+    <DoubleSlider
+      sliders={[
+        {
+          color: 'green',
+          progress: this.state.progress,
+          dot: studentIcon,
+          dotStyle: { bottom: -7 }
+        },
+        {
+          color: 'purple',
+          progress: 45,
+          dot: coachIcon,
+          dotStyle: { top: 7 }
+        }
+      ]}
+      activeSlider={0}
+      equalColor="blue"
+      progress={this.state.progress}
+      onSlide={this.onSlide}
+    />
+  );
 }
-
-export default App;
