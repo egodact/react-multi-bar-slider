@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
-import transition from './utils/transition';
+import transition from '../utils/transition';
 
 const StyledDot = glamorous.span({
   position: 'absolute',
   display: 'block',
   zIndex: 5,
   borderRadius: '50%'
-}, ({ right, hasIcon, width, height, color, noTransition }) => ({
+}, ({ hasIcon, width, height, color, noTransition }) => ({
   top: hasIcon ? 0 : '50%',
-  right: `${right || 0}%`,
   transform: hasIcon ? 'translateX(-50%)' : 'translate(50%, -50%)',
   width: hasIcon ? 0 : width,
   height: hasIcon ? 0 : height,
@@ -28,10 +27,9 @@ const DotIcon = glamorous.img({
   height
 }));
 
-const Dot = ({ dot, progress, sliderColor, mouseDown }) => (
+const Dot = ({ dot, sliderColor, mouseDown }) => (
   <StyledDot
     className="dot"
-    right={progress}
     hasIcon={!!dot.icon}
     width={dot.width || 28}
     height={dot.height || 28}
@@ -63,7 +61,6 @@ Dot.propTypes = {
     }),
     PropTypes.bool
   ]).isRequired,
-  progress: PropTypes.number.isRequired,
   sliderColor: PropTypes.string.isRequired,
   mouseDown: PropTypes.bool.isRequired
 };

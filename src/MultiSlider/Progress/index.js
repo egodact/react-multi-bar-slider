@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import sliderPropType from './utils/sliderPropType';
+import sliderPropType from '../utils/sliderPropType';
 import glamorous from 'glamorous';
-import transition from './utils/transition';
-import getHalf from './utils/getHalf';
+import transition from '../utils/transition';
+import getHalf from '../utils/getHalf';
 import Dot from './Dot';
 
 const StyledProgress = glamorous.div(
@@ -40,28 +40,26 @@ const Progress = ({
   mouseDown,
   zIndex
 }) => (
-  <Fragment>
-    <StyledProgress
-      className="progress"
-      color={slider.color}
-      progress={slider.progress}
-      height={height}
-      equal={slidersEqual}
-      equalColor={equalColor}
-      roundedCorners={roundedCorners}
-      zIndex={zIndex}
-      noTransition={mouseDown}
-      css={slider.style}
-    />
+  <StyledProgress
+    className="progress"
+    color={slider.color}
+    progress={slider.progress}
+    height={height}
+    equal={slidersEqual}
+    equalColor={equalColor}
+    roundedCorners={roundedCorners}
+    zIndex={zIndex}
+    noTransition={mouseDown}
+    css={slider.style}
+  >
     {slider.dot && (
       <Dot
         dot={slider.dot}
-        progress={slider.progress}
         sliderColor={slider.color}
         mouseDown={mouseDown}
       />
     )}
-  </Fragment>
+  </StyledProgress>
 );
 
 Progress.propTypes = {
