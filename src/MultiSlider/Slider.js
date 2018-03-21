@@ -5,6 +5,7 @@ import transition from './utils/transition';
 import getHalf from './utils/getHalf';
 
 export const StyledSlider = glamorous.div({
+  position: 'relative',
   height: 14,
   boxSizing: 'border-box',
   transition

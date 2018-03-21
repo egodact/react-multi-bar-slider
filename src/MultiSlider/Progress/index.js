@@ -48,8 +48,8 @@ const Progress = ({
     equal={slidersEqual}
     equalColor={equalColor}
     roundedCorners={roundedCorners}
-    zIndex={zIndex}
     noTransition={mouseDown}
+    zIndex={zIndex}
     css={slider.style}
   >
     {slider.dot && (
@@ -66,7 +66,7 @@ Progress.propTypes = {
   slider: sliderPropType,
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   slidersEqual: PropTypes.bool.isRequired,
-  equalColor: PropTypes.string.isRequired,
+  equalColor: PropTypes.string,
   roundedCorners: PropTypes.bool.isRequired,
   mouseDown: PropTypes.bool.isRequired,
   zIndex: PropTypes.number.isRequired

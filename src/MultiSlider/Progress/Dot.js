@@ -5,12 +5,13 @@ import transition from '../utils/transition';
 
 const StyledDot = glamorous.span({
   position: 'absolute',
+  left: 0,
   display: 'block',
   zIndex: 5,
   borderRadius: '50%'
 }, ({ hasIcon, width, height, color, noTransition }) => ({
   top: hasIcon ? 0 : '50%',
-  transform: hasIcon ? 'translateX(-50%)' : 'translate(50%, -50%)',
+  transform: hasIcon ? 'translateX(-50%)' : 'translate(-50%, -50%)',
   width: hasIcon ? 0 : width,
   height: hasIcon ? 0 : height,
   backgroundColor: hasIcon ? 'transparent' : color,
@@ -34,8 +35,8 @@ const Dot = ({ dot, sliderColor, mouseDown }) => (
     width={dot.width || 28}
     height={dot.height || 28}
     color={dot.color || sliderColor}
-    css={dot.style}
     noTransition={mouseDown}
+    css={dot.style}
   >
     {dot.icon && (
       <DotIcon
