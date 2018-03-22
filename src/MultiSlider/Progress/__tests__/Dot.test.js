@@ -17,6 +17,7 @@ beforeEach(() => {
       style: { color: 'purple' }
     },
     sliderColor: 'blue',
+    reversed: false,
     mouseDown: false
   };
 });

@@ -19,6 +19,7 @@ export default class MultiSlider extends PureComponent {
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     onSlide: PropTypes.func.isRequired,
     roundedCorners: PropTypes.bool,
+    reverse: PropTypes.bool,
     readOnly: PropTypes.bool
   };
 
@@ -29,16 +30,17 @@ export default class MultiSlider extends PureComponent {
     backgroundColor: '#EEEEEE',
     roundedCorners: false,
     style: {},
+    reversed: false,
     readOnly: false
   };
 
   state = { mouseDown: false };
 
   handleSlide = (e) => {
-    const { onSlide, readOnly } = this.props;
+    const { onSlide, reversed, readOnly } = this.props;
     if (readOnly) return;
 
-    const newProgress = getProgressFromMousePosition(e);
+    const newProgress = getProgressFromMousePosition(e, reversed);
     onSlide(newProgress);
   };
 
@@ -58,8 +60,9 @@ export default class MultiSlider extends PureComponent {
       slidableZoneSize,
       backgroundColor,
       equalColor,
-      roundedCorners,
       style,
+      roundedCorners,
+      reversed,
       readOnly
     } = this.props;
     const allSlidersEqual = slidersEqual(sliders);
@@ -85,6 +88,7 @@ export default class MultiSlider extends PureComponent {
             slidersEqual={allSlidersEqual}
             equalColor={equalColor}
             roundedCorners={roundedCorners}
+            reversed={reversed}
             mouseDown={this.state.mouseDown}
             zIndex={sortedSliders.indexOf(slider)}
             key={i}

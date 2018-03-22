@@ -84,7 +84,7 @@ describe('MultiSlider.js', () => {
       },
       pageX: 933.64
     });
-    expect(onSlide.mock.calls[0][0]).toBe(11);
+    expect(onSlide.mock.calls[0][0]).toBe(89);
   });
 
   it('handles mouse moves correctly', () => {
@@ -108,7 +108,7 @@ describe('MultiSlider.js', () => {
     multiSlider.find(Slider).prop('onMouseMoveActivate')();
     multiSlider.update();
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
-    expect(onSlide.mock.calls[0][0]).toBe(11);
+    expect(onSlide.mock.calls[0][0]).toBe(89);
 
     multiSlider.find(Slider).prop('onMouseMoveDeactivate')();
     multiSlider.update();

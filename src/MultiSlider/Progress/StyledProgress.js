@@ -7,7 +7,6 @@ const StyledProgress = glamorous.div(
   {
     position: 'absolute',
     top: 0,
-    right: 0
   },
   ({
     color,
@@ -16,9 +15,12 @@ const StyledProgress = glamorous.div(
     equal,
     equalColor,
     roundedCorners,
+    reversed,
     noTransition,
     zIndex
   }) => ({
+    left: reversed ? 'auto' : 0,
+    right: reversed ? 0 : 'auto',
     width: `${progress || 0}%`,
     height,
     backgroundColor: equal && equalColor ? equalColor : color,
@@ -38,6 +40,7 @@ StyledProgress.propTypes = {
   equal: PropTypes.bool.isRequired,
   equalColor: PropTypes.string,
   roundedCorners: PropTypes.bool.isRequired,
+  reversed: PropTypes.bool.isRequired,
   noTransition: PropTypes.bool.isRequired,
   zIndex: PropTypes.number.isRequired,
   css: PropTypes.object

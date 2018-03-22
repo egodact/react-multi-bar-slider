@@ -4,15 +4,16 @@ import processStyle from '../../utils/processStyle';
 import StyledDot from './StyledDot';
 import DotIcon from './DotIcon';
 
-const Dot = ({ dot, sliderColor, mouseDown }) => (
+const Dot = ({ dot, sliderColor, reversed, mouseDown }) => (
   <StyledDot
     className="dot"
     hasIcon={!!dot.icon}
     width={dot.width}
     height={dot.height}
     color={dot.color || sliderColor}
+    reversed={reversed}
     noTransition={mouseDown}
-    css={processStyle(dot.style, { dot, sliderColor, mouseDown })}
+    css={processStyle(dot.style, { dot, sliderColor, reversed, mouseDown })}
   >
     {dot.icon && (
       <DotIcon
@@ -39,6 +40,7 @@ Dot.propTypes = {
     PropTypes.bool
   ]).isRequired,
   sliderColor: PropTypes.string.isRequired,
+  reversed: PropTypes.bool.isRequired,
   mouseDown: PropTypes.bool.isRequired
 };
 

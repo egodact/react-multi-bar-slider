@@ -12,7 +12,7 @@ describe('getProgressFromMousePosition', () => {
       },
       pageX: 200
     });
-    expect(result).toBe(90);
+    expect(result).toBe(10);
 
     const result2 = getProgressFromMousePosition({
       target: {
@@ -24,7 +24,7 @@ describe('getProgressFromMousePosition', () => {
       },
       pageX: 933.64
     });
-    expect(result2).toBe(11);
+    expect(result2).toBe(89);
   });
 
   it('rounds the percentage', () => {
@@ -38,7 +38,9 @@ describe('getProgressFromMousePosition', () => {
       },
       pageX: 245
     });
-    expect(result).toBe(86);
+    // Because JavaScript can't calculate .145 * 100 correctly it's 14 and not
+    // 15
+    expect(result).toBe(14);
   });
 
   it('limits the progress', () => {
@@ -52,7 +54,7 @@ describe('getProgressFromMousePosition', () => {
       },
       pageX: 1200
     });
-    expect(result).toBe(0);
+    expect(result).toBe(100);
 
     const result2 = getProgressFromMousePosition({
       target: {
@@ -64,6 +66,20 @@ describe('getProgressFromMousePosition', () => {
       },
       pageX: 0
     });
-    expect(result2).toBe(100);
+    expect(result2).toBe(0);
+  });
+
+  it('can be reversed', () => {
+    const result = getProgressFromMousePosition({
+      target: {
+        classList: [],
+        getBoundingClientRect: () => ({
+          left: 100,
+          width: 1000
+        })
+      },
+      pageX: 200
+    }, true);
+    expect(result).toBe(90);
   });
 });

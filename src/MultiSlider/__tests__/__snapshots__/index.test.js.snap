@@ -11,10 +11,10 @@ exports[`MultiSlider.js matches the snapshot 1`] = `
   readOnly={false}
 >
   <div
-    className="css-18897st progress"
+    className="css-1mxp4l8 progress"
   >
     <span
-      className="css-14o13ui dot"
+      className="css-yt6nys dot"
     >
       <img
         className="css-va7boi icon"
@@ -24,10 +24,10 @@ exports[`MultiSlider.js matches the snapshot 1`] = `
     </span>
   </div>
   <div
-    className="css-ay0g0g progress"
+    className="css-1ubr59k progress"
   >
     <span
-      className="css-14o13ui dot"
+      className="css-yt6nys dot"
     >
       <img
         className="css-q037tf icon"

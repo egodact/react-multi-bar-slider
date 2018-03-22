@@ -53,6 +53,7 @@ export default class App extends Component {
         ]}
         slidableZoneSize={50}
         onSlide={this.onSlide}
+        reversed
       />
       <Break />
       <MultiSlider
@@ -70,6 +71,7 @@ export default class App extends Component {
         equalColor="#3F51B5"
         style={{ marginLeft: '50%' }}
         onSlide={this.onSlide}
+        reversed
         readOnly
       />
       <Break />

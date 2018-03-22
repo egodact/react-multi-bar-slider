@@ -2,6 +2,6 @@
 
 exports[`Dot.js matches the snapshot 1`] = `
 <span
-  className="css-mitn85 dot"
+  className="css-1mk3smr dot"
 />
 `;

@@ -11,6 +11,7 @@ const Progress = ({
   slidersEqual,
   equalColor,
   roundedCorners,
+  reversed,
   mouseDown,
   zIndex
 }) => (
@@ -22,6 +23,7 @@ const Progress = ({
     equal={slidersEqual}
     equalColor={equalColor}
     roundedCorners={roundedCorners}
+    reversed={reversed}
     noTransition={mouseDown}
     zIndex={zIndex}
     css={processStyle(slider.style, {
@@ -30,6 +32,7 @@ const Progress = ({
       slidersEqual,
       equalColor,
       roundedCorners,
+      reversed,
       mouseDown,
       zIndex
     })}
@@ -38,6 +41,7 @@ const Progress = ({
       <Dot
         dot={slider.dot}
         sliderColor={slider.color}
+        reversed={reversed}
         mouseDown={mouseDown}
       />
     )}
@@ -53,6 +57,7 @@ Progress.propTypes = {
   slidersEqual: PropTypes.bool.isRequired,
   equalColor: PropTypes.string,
   roundedCorners: PropTypes.bool.isRequired,
+  reversed: PropTypes.bool.isRequired,
   mouseDown: PropTypes.bool.isRequired,
   zIndex: PropTypes.number.isRequired
 };

@@ -14,6 +14,7 @@ beforeAll(() => {
     equal: true,
     equalColor: 'purple',
     roundedCorners: false,
+    reversed: false,
     noTransition: false,
     zIndex: 4
   };

@@ -18,6 +18,7 @@ beforeEach(() => {
     slidersEqual: true,
     equalColor: 'purple',
     roundedCorners: false,
+    reversed: false,
     mouseDown: false,
     zIndex: 4
   };

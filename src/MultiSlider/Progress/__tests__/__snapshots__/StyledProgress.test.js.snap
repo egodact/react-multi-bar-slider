@@ -2,6 +2,6 @@
 
 exports[`StyledProgress.js matches the snapshot 1`] = `
 <div
-  className="css-1hjywi8"
+  className="css-jhmfph"
 />
 `;

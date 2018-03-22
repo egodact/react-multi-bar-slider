@@ -12,6 +12,7 @@ beforeAll(() => {
     width: 30,
     height: 30,
     color: 'green',
+    reversed: false,
     noTransition: false
   };
 });

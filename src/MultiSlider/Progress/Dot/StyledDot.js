@@ -4,13 +4,17 @@ import transition from '../../utils/transition';
 
 const StyledDot = glamorous.span({
   position: 'absolute',
-  left: 0,
+  right: 0,
   display: 'block',
   zIndex: 5,
   borderRadius: '50%'
-}, ({ hasIcon, width, height, color, noTransition }) => ({
+}, ({ hasIcon, width, height, color, reversed, noTransition }) => ({
   top: hasIcon ? 0 : '50%',
-  transform: hasIcon ? 'translateX(-50%)' : 'translate(-50%, -50%)',
+  left: reversed ? 0 : 'auto',
+  right: reversed ? 'auto' : 0,
+  transform: hasIcon
+    ? 'translateX(-50%)'
+    : reversed ? 'translate(-50%, -50%)' : 'translate(50%, -50%)',
   width: hasIcon ? 0 : width,
   height: hasIcon ? 0 : height,
   backgroundColor: hasIcon ? 'transparent' : color,
@@ -22,6 +26,7 @@ StyledDot.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   color: PropTypes.string.isRequired,
+  reversed: PropTypes.bool.isRequired,
   noTransition: PropTypes.bool.isRequired,
   css: PropTypes.object
 };
