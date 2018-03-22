@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
 import transition from './utils/transition';
 import getHalf from './utils/getHalf';
+import processStyle from './utils/processStyle';
 
 export const StyledSlider = glamorous.div({
   position: 'relative',
@@ -34,7 +35,13 @@ const Slider = ({
     width={width}
     height={height}
     backgroundColor={backgroundColor}
-    css={style}
+    css={processStyle(style, {
+      width,
+      height,
+      backgroundColor,
+      roundedCorners,
+      readOnly
+    })}
     roundedCorners={roundedCorners}
     readOnly={readOnly}
     onClick={onSlide}
@@ -57,7 +64,7 @@ Slider.propTypes = {
     PropTypes.number
   ]).isRequired,
   backgroundColor: PropTypes.string.isRequired,
-  style: PropTypes.object.isRequired,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   onSlide: PropTypes.func.isRequired,
   onMouseMoveActivate: PropTypes.func.isRequired,
   onMouseMoveDeactivate: PropTypes.func.isRequired,

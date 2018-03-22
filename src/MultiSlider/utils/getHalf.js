@@ -1,7 +1,8 @@
-const getHalf = (number) => {
-  if (typeof number !== 'string') return number / 2;
-  const asNumber = Number(number.slice(0, number.length - 1));
-  return `${asNumber / 2}%`;
+const getHalf = (value) => {
+  if (typeof value === 'number') return value / 2;
+  const asNumber = parseFloat(value);
+  const unit = value.slice(asNumber.toString().length, value.length);
+  return `${asNumber / 2}${unit}`;
 };
 
 export default getHalf;

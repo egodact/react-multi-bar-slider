@@ -42,6 +42,9 @@ export default class App extends Component {
           {
             color: '#AB47BC',
             progress: 45,
+            style: ({ slidersEqual }) => ({
+              borderTopLeftRadius: slidersEqual ? 7 : 0
+            }),
             dot: {
               icon: coachIcon,
               iconStyle: { top: 7 }

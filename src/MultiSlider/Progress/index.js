@@ -5,6 +5,7 @@ import glamorous from 'glamorous';
 import transition from '../utils/transition';
 import getHalf from '../utils/getHalf';
 import Dot from './Dot';
+import processStyle from '../utils/processStyle';
 
 const StyledProgress = glamorous.div(
   {
@@ -50,7 +51,15 @@ const Progress = ({
     roundedCorners={roundedCorners}
     noTransition={mouseDown}
     zIndex={zIndex}
-    css={slider.style}
+    css={processStyle(slider.style, {
+      slider,
+      height,
+      slidersEqual,
+      equalColor,
+      roundedCorners,
+      mouseDown,
+      zIndex
+    })}
   >
     {slider.dot && (
       <Dot

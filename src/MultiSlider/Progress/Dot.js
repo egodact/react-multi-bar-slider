@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
 import transition from '../utils/transition';
+import processStyle from '../utils/processStyle';
 
 const StyledDot = glamorous.span({
   position: 'absolute',
@@ -36,7 +37,7 @@ const Dot = ({ dot, sliderColor, mouseDown }) => (
     height={dot.height || 28}
     color={dot.color || sliderColor}
     noTransition={mouseDown}
-    css={dot.style}
+    css={processStyle(dot.style, { dot, sliderColor, mouseDown })}
   >
     {dot.icon && (
       <DotIcon
@@ -45,7 +46,7 @@ const Dot = ({ dot, sliderColor, mouseDown }) => (
         width={dot.width || 50}
         height={dot.height || 50}
         draggable={false}
-        css={dot.iconStyle}
+        css={processStyle(dot.iconStyle, { dot, sliderColor, mouseDown })}
       />
     )}
   </StyledDot>

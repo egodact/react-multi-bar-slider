@@ -16,7 +16,7 @@ export default class MultiSlider extends PureComponent {
     slidableZoneSize: PropTypes.number,
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
-    style: PropTypes.object,
+    style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     onSlide: PropTypes.func.isRequired,
     roundedCorners: PropTypes.bool,
     readOnly: PropTypes.bool
