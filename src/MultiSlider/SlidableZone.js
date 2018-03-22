@@ -11,7 +11,10 @@ const SlidableZone = glamorous.div({
 }));
 
 SlidableZone.propTypes = {
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  size: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   zIndex: PropTypes.number.isRequired
 };
 

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider.js matches the snapshot 1`] = `
+<div
+  className="css-975bpe"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseMove={[Function]}
+  onMouseUp={[Function]}
+  readOnly={false}
+>
+  Foo
+</div>
+`;

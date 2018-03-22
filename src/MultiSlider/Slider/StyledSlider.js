@@ -29,7 +29,7 @@ StyledSlider.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   roundedCorners: PropTypes.bool.isRequired,
   readOnly: PropTypes.bool.isRequired,
-  css: PropTypes.object
+  css: PropTypes.object.isRequired
 };
 
 export default StyledSlider;

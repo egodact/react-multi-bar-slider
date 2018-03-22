@@ -8,7 +8,7 @@ import DotIcon from '../Dot/DotIcon';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-beforeAll(() => {
+beforeEach(() => {
   global.dotProps = {
     dot: {
       width: 40,
@@ -21,7 +21,7 @@ beforeAll(() => {
   };
 });
 
-afterAll(() => {
+afterEach(() => {
   delete global.dotProps;
 });
 
