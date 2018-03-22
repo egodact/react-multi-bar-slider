@@ -52,7 +52,6 @@ export default class App extends Component {
           }
         ]}
         slidableZoneSize={50}
-        progress={this.state.progress}
         onSlide={this.onSlide}
       />
       <Break />
@@ -70,7 +69,6 @@ export default class App extends Component {
         width="50%"
         equalColor="#3F51B5"
         style={{ marginLeft: '50%' }}
-        progress={this.state.progress}
         onSlide={this.onSlide}
         readOnly
       />
@@ -87,7 +85,6 @@ export default class App extends Component {
         ]}
         height={18}
         slidableZoneSize={36}
-        progress={this.state.progress}
         onSlide={this.onSlide}
         roundedCorners
       />

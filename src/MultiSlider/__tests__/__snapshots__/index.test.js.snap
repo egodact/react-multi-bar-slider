@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MultiSlider.js matches the snapshot 1`] = `
+<div
+  className="css-1i6y0pe"
+  onClick={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseMove={[Function]}
+  onMouseUp={[Function]}
+  readOnly={false}
+>
+  <div
+    className="css-18897st progress"
+  >
+    <span
+      className="css-14o13ui dot"
+    >
+      <img
+        className="css-va7boi icon"
+        draggable={false}
+        src="foo.png"
+      />
+    </span>
+  </div>
+  <div
+    className="css-ay0g0g progress"
+  >
+    <span
+      className="css-14o13ui dot"
+    >
+      <img
+        className="css-q037tf icon"
+        draggable={false}
+        src="bar.png"
+      />
+    </span>
+  </div>
+  <div
+    className="css-qfp31e"
+  />
+</div>
+`;
