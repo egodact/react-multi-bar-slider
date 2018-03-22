@@ -28,8 +28,8 @@ export default class MultiSlider extends PureComponent {
     height: 14,
     slidableZoneSize: 7,
     backgroundColor: '#EEEEEE',
-    roundedCorners: false,
     style: {},
+    roundedCorners: false,
     reversed: false,
     readOnly: false
   };
