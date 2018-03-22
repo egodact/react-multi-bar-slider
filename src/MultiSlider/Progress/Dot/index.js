@@ -1,40 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
-import transition from '../utils/transition';
-import processStyle from '../utils/processStyle';
-
-const StyledDot = glamorous.span({
-  position: 'absolute',
-  left: 0,
-  display: 'block',
-  zIndex: 5,
-  borderRadius: '50%'
-}, ({ hasIcon, width, height, color, noTransition }) => ({
-  top: hasIcon ? 0 : '50%',
-  transform: hasIcon ? 'translateX(-50%)' : 'translate(-50%, -50%)',
-  width: hasIcon ? 0 : width,
-  height: hasIcon ? 0 : height,
-  backgroundColor: hasIcon ? 'transparent' : color,
-  transition: noTransition ? 'none' : transition
-}));
-
-const DotIcon = glamorous.img({
-  position: 'absolute',
-  transform: 'translateX(-50%)',
-  userDrag: 'none',
-  userSelect: 'none'
-}, ({ width, height }) => ({
-  width,
-  height
-}));
+import processStyle from '../../utils/processStyle';
+import StyledDot from './StyledDot';
+import DotIcon from './DotIcon';
 
 const Dot = ({ dot, sliderColor, mouseDown }) => (
   <StyledDot
     className="dot"
     hasIcon={!!dot.icon}
-    width={dot.width || 28}
-    height={dot.height || 28}
+    width={dot.width}
+    height={dot.height}
     color={dot.color || sliderColor}
     noTransition={mouseDown}
     css={processStyle(dot.style, { dot, sliderColor, mouseDown })}
@@ -43,8 +18,8 @@ const Dot = ({ dot, sliderColor, mouseDown }) => (
       <DotIcon
         className="icon"
         src={dot.icon}
-        width={dot.width || 50}
-        height={dot.height || 50}
+        width={dot.width }
+        height={dot.height}
         draggable={false}
         css={processStyle(dot.iconStyle, { dot, sliderColor, mouseDown })}
       />

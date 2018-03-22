@@ -1,22 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
-import transition from './utils/transition';
-import getHalf from './utils/getHalf';
-import processStyle from './utils/processStyle';
-
-export const StyledSlider = glamorous.div({
-  position: 'relative',
-  height: 14,
-  boxSizing: 'border-box',
-  transition
-}, ({ readOnly, width, height, backgroundColor, roundedCorners }) => ({
-  width,
-  height,
-  backgroundColor,
-  borderRadius: roundedCorners ? getHalf(height) : 0,
-  cursor: readOnly ? 'auto' : 'pointer'
-}));
+import processStyle from '../utils/processStyle';
+import StyledSlider from './StyledSlider';
 
 const Slider = ({
   width,
@@ -35,6 +20,8 @@ const Slider = ({
     width={width}
     height={height}
     backgroundColor={backgroundColor}
+    roundedCorners={roundedCorners}
+    readOnly={readOnly}
     css={processStyle(style, {
       width,
       height,
@@ -42,8 +29,6 @@ const Slider = ({
       roundedCorners,
       readOnly
     })}
-    roundedCorners={roundedCorners}
-    readOnly={readOnly}
     onClick={onSlide}
     onMouseDown={onMouseMoveActivate}
     onMouseUp={onMouseMoveDeactivate}
@@ -69,6 +54,7 @@ Slider.propTypes = {
   onMouseMoveActivate: PropTypes.func.isRequired,
   onMouseMoveDeactivate: PropTypes.func.isRequired,
   onMouseMove: PropTypes.func.isRequired,
+  roundedCorners: PropTypes.bool.isRequired,
   readOnly: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired
 };

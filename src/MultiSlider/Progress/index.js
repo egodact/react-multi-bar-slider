@@ -1,36 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sliderPropType from '../utils/sliderPropType';
-import glamorous from 'glamorous';
-import transition from '../utils/transition';
-import getHalf from '../utils/getHalf';
 import Dot from './Dot';
 import processStyle from '../utils/processStyle';
-
-const StyledProgress = glamorous.div(
-  {
-    position: 'absolute',
-    top: 0,
-    right: 0
-  },
-  ({
-    color,
-    progress,
-    height,
-    equal,
-    equalColor,
-    roundedCorners,
-    zIndex,
-    noTransition
-  }) => ({
-    width: `${progress || 0}%`,
-    height,
-    backgroundColor: equal && equalColor ? equalColor : color,
-    borderRadius: roundedCorners ? getHalf(height) : 0,
-    zIndex,
-    transition: noTransition ? 'none' : transition
-  })
-);
+import StyledProgress from './StyledProgress';
 
 const Progress = ({
   slider,
@@ -73,7 +46,10 @@ const Progress = ({
 
 Progress.propTypes = {
   slider: sliderPropType,
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   slidersEqual: PropTypes.bool.isRequired,
   equalColor: PropTypes.string,
   roundedCorners: PropTypes.bool.isRequired,

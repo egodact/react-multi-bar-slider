@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DotIcon.js matches the snapshot 1`] = `
+<img
+  className="css-19tq53f"
+/>
+`;
