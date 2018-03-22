@@ -1,7 +1,23 @@
 {
   "name": "react-multi-bar-slider",
-  "version": "0.1.0",
-  "private": false,
+  "version": "1.0.0",
+  "description": "Slider component for React with multiple bars",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafaelklaessen/react-multi-bar-slider.git"
+  },
+  "author": "Rafael Klaessen",
+  "bugs": {
+    "url": "https://github.com/rafaelklaessen/react-multi-bar-slider/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "slider",
+    "multi slider",
+    "multi bar slider",
+    "react slider",
+    "react multi slider"
+  ],
   "peerDependencies": {
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
@@ -31,6 +47,7 @@
     "glamor": "^2.20.40",
     "glamorous": "^4.12.1",
     "jest": "^21.2.1",
+    "jest-cli": "^22.4.3",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
