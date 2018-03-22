@@ -1,14 +1,16 @@
 const getSliderElement = (e) => {
-  const sliderEl = e.target;
+  const sliderElement = e.target;
+  const elementClass = sliderElement.classList[1];
 
-  // Make sure we select the slider element
-  if (sliderEl.classList[1] === 'icon') {
-    return sliderEl.parentNode.parentNode;
+  if (elementClass === 'icon') {
+    return sliderElement.parentNode.parentNode;
   }
-  if (sliderEl.classList[1] === 'dot' || sliderEl.classList[1] === 'progress') {
-    return sliderEl.parentNode;
+
+  if (elementClass === 'dot' || elementClass === 'progress') {
+    return sliderElement.parentNode;
   }
-  return sliderEl;
+
+  return sliderElement;
 };
 
 export default getSliderElement;
