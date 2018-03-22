@@ -21,6 +21,7 @@ afterAll(() => {
   delete global.styledDotProps;
 });
 
+/* global styledDotProps */
 describe('StyledDot.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

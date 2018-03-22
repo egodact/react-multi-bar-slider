@@ -28,6 +28,7 @@ afterEach(() => {
   delete global.progressProps;
 });
 
+/* global progressProps */
 describe('Progress.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

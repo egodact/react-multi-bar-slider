@@ -21,6 +21,7 @@ afterAll(() => {
   delete global.styledSliderProps;
 });
 
+/* global styledSliderProps */
 describe('StyledSlider.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

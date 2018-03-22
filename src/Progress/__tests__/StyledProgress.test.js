@@ -24,6 +24,7 @@ afterAll(() => {
   delete global.styledProgressProps;
 });
 
+/* global styledProgressProps */
 describe('StyledProgress.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

@@ -17,6 +17,7 @@ afterAll(() => {
   delete global.dotIconProps;
 });
 
+/* global dotIconProps */
 describe('DotIcon.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

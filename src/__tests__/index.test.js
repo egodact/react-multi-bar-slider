@@ -41,6 +41,7 @@ afterAll(() => {
   delete global.multiSliderProps;
 });
 
+/* global multiSliderProps */
 describe('MultiSlider.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

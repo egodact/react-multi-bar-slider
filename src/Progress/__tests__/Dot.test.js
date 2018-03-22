@@ -26,6 +26,7 @@ afterEach(() => {
   delete global.dotProps;
 });
 
+/* global dotProps */
 describe('Dot.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

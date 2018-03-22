@@ -26,6 +26,7 @@ afterAll(() => {
   delete global.sliderProps;
 });
 
+/* global sliderProps */
 describe('Slider.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer

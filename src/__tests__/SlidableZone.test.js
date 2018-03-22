@@ -17,6 +17,7 @@ afterAll(() => {
   delete global.slidableZoneProps;
 });
 
+/* global slidableZoneProps */
 describe('SlidableZone.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer
