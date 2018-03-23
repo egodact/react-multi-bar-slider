@@ -46,4 +46,8 @@ StyledProgress.propTypes = {
   css: PropTypes.object
 };
 
+StyledProgress.defaultProps = {
+  equal: false
+};
+
 export default StyledProgress;
