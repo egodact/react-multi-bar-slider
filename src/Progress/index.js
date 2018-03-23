@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { Children } from 'react';
 import PropTypes from 'prop-types';
-import sliderPropType from '../utils/sliderPropType';
-import Dot from './Dot';
 import processStyle from '../utils/processStyle';
 import StyledProgress from './StyledProgress';
 
 const Progress = ({
-  slider,
+  color,
+  progress,
+  style,
   height,
   slidersEqual,
   equalColor,
   roundedCorners,
   reversed,
   mouseDown,
-  zIndex
+  zIndex,
+  children
 }) => (
   <StyledProgress
     className="progress"
-    color={slider.color}
-    progress={slider.progress}
+    color={color}
+    progress={progress}
     height={height}
     equal={slidersEqual}
     equalColor={equalColor}
@@ -26,8 +27,9 @@ const Progress = ({
     reversed={reversed}
     noTransition={mouseDown}
     zIndex={zIndex}
-    css={processStyle(slider.style, {
-      slider,
+    css={processStyle(style, {
+      color,
+      progress,
       height,
       slidersEqual,
       equalColor,
@@ -37,29 +39,29 @@ const Progress = ({
       zIndex
     })}
   >
-    {slider.dot && (
-      <Dot
-        dot={slider.dot}
-        sliderColor={slider.color}
-        reversed={reversed}
-        mouseDown={mouseDown}
-      />
-    )}
+    {React.cloneElement(Children.only(children), {
+      sliderColor: color,
+      reversed,
+      mouseDown
+    })}
   </StyledProgress>
 );
 
 Progress.propTypes = {
-  slider: sliderPropType,
+  color: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   height: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]).isRequired,
-  slidersEqual: PropTypes.bool.isRequired,
+  slidersEqual: PropTypes.bool,
   equalColor: PropTypes.string,
-  roundedCorners: PropTypes.bool.isRequired,
-  reversed: PropTypes.bool.isRequired,
-  mouseDown: PropTypes.bool.isRequired,
-  zIndex: PropTypes.number.isRequired
+  roundedCorners: PropTypes.bool,
+  reversed: PropTypes.bool,
+  mouseDown: PropTypes.bool,
+  zIndex: PropTypes.number,
+  children: PropTypes.element
 };
 
 export default Progress;

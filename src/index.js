@@ -1,16 +1,18 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Children } from 'react';
 import PropTypes from 'prop-types';
 import getProgressFromMousePosition from './utils/getProgressFromMousePosition';
 import slidersEqual from './utils/slidersEqual';
 import sortSliders from './utils/sortSliders';
-import sliderPropType from './utils/sliderPropType';
 import Slider from './Slider';
 import Progress from './Progress';
+import Dot from './Dot';
 import SlidableZone from './SlidableZone';
 
 export default class MultiSlider extends PureComponent {
+  static Progress = Progress;
+  static Dot = Dot;
+
   static propTypes = {
-    sliders: PropTypes.arrayOf(sliderPropType).isRequired,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     slidableZoneSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -20,7 +22,8 @@ export default class MultiSlider extends PureComponent {
     onSlide: PropTypes.func.isRequired,
     roundedCorners: PropTypes.bool,
     reversed: PropTypes.bool,
-    readOnly: PropTypes.bool
+    readOnly: PropTypes.bool,
+    children: PropTypes.node.isRequired
   };
 
   static defaultProps = {
@@ -65,10 +68,12 @@ export default class MultiSlider extends PureComponent {
       roundedCorners,
       reversed,
       readOnly,
+      children,
       ...props
     } = this.props;
-    const allSlidersEqual = slidersEqual(sliders);
-    const sortedSliders = sortSliders(sliders);
+    const childrenArr = Children.toArray(children);
+    const allSlidersEqual = slidersEqual(childrenArr);
+    const sortedChildren = sortSliders(childrenArr);
 
     return (
       <Slider
@@ -84,20 +89,18 @@ export default class MultiSlider extends PureComponent {
         readOnly={readOnly}
         {...props}
       >
-        {sliders.map((slider, i) =>
-          <Progress
-            slider={slider}
-            height={height}
-            slidersEqual={allSlidersEqual}
-            equalColor={equalColor}
-            roundedCorners={roundedCorners}
-            reversed={reversed}
-            mouseDown={this.state.mouseDown}
-            zIndex={sortedSliders.indexOf(slider)}
-            key={i}
-          />
+        {childrenArr.map(child =>
+          React.cloneElement(child, {
+            height,
+            slidersEqual: allSlidersEqual,
+            equalColor,
+            roundedCorners,
+            reversed,
+            mouseDown: this.state.mouseDown,
+            zIndex: sortedChildren.indexOf(child)
+          })
         )}
-        <SlidableZone size={slidableZoneSize} zIndex={sliders.length} />
+        <SlidableZone size={slidableZoneSize} zIndex={Children.count(children)} />
       </Slider>
     );
   };

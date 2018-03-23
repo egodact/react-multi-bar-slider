@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import glamorous from 'glamorous';
-import transition from '../../utils/transition';
+import transition from '../utils/transition';
 
 const StyledDot = glamorous.span({
   position: 'absolute',
