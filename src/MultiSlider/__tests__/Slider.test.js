@@ -3,7 +3,7 @@ import Enzyme, { shallow, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import Slider from '../Slider';
-import StyledSlider from '../Slider/StyledSlider';
+import StyledSlider from '../StyledSlider';
 
 Enzyme.configure({ adapter: new Adapter() });
 

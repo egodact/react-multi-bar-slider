@@ -10,12 +10,10 @@ Enzyme.configure({ adapter: new Adapter() });
 
 beforeEach(() => {
   global.dotProps = {
-    dot: {
-      width: 40,
-      height: 40,
-      color: 'green',
-      style: { color: 'purple' }
-    },
+    width: 40,
+    height: 40,
+    color: 'green',
+    style: { color: 'purple' },
     sliderColor: 'blue',
     reversed: false,
     mouseDown: false
@@ -49,7 +47,7 @@ describe('Dot.js', () => {
     const dot = shallow(<Dot {...dotProps} />);
     expect(dot.find(DotIcon).length).toBe(0);
 
-    dotProps.dot.icon = 'foo.png';
+    dotProps.icon = 'foo.png';
     const dot2 = shallow(<Dot {...dotProps} />);
     expect(dot2.find(DotIcon).length).toBe(1)
     expect(dot2.find(DotIcon).prop('src')).toBe('foo.png');

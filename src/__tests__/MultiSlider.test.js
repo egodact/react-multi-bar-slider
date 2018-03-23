@@ -2,10 +2,10 @@ import React from 'react';
 import Enzyme, { shallow, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
-import MultiSlider from '../index';
-import Slider from '../Slider';
+import MultiSlider from '../MultiSlider';
+import Slider from '../MultiSlider/Slider';
 import Progress from '../Progress';
-import SlidableZone from '../SlidableZone';
+import SlidableZone from '../MultiSlider/SlidableZone';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -41,46 +41,81 @@ afterAll(() => {
   delete global.multiSliderProps;
 });
 
+const Child = () => <div />;
+
 /* global multiSliderProps */
 describe('MultiSlider.js', () => {
   it('matches the snapshot', () => {
     const tree = renderer
-      .create(<MultiSlider {...multiSliderProps} />)
+      .create(
+        <MultiSlider {...multiSliderProps}>
+          <Child progress={4} />
+        </MultiSlider>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('renders without crashing', () => {
-    const multiSlider = render(<MultiSlider {...multiSliderProps} />);
+    const multiSlider = render(
+      <MultiSlider {...multiSliderProps}>
+        <Child progress={4} />
+      </MultiSlider>
+    );
     expect(multiSlider).toBeDefined();
   });
 
   it('renders a Slider', () => {
-    const multiSlider = shallow(<MultiSlider {...multiSliderProps} />);
+    const multiSlider = shallow(
+      <MultiSlider {...multiSliderProps}>
+        <Child progress={4} />
+      </MultiSlider>
+    );
     expect(multiSlider.find(Slider).length).toBe(1);
   });
 
   it('passes on undocumented props to the Slider', () => {
     const multiSlider = shallow(
-      <MultiSlider {...multiSliderProps} foo="bar" />
+      <MultiSlider {...multiSliderProps} foo="bar">
+        <Child progress={4} />
+      </MultiSlider>
     );
     expect(multiSlider.find(Slider).prop('foo')).toBe('bar');
   });
 
-  it('renders a Progress for every given slider', () => {
-    const multiSlider = shallow(<MultiSlider {...multiSliderProps} />);
-    expect(multiSlider.find(Progress).length).toBe(2);
+  it('passes the correct props to its children', () => {
+    const multiSlider = shallow(
+      <MultiSlider {...multiSliderProps}>
+        <Child progress={4} />
+      </MultiSlider>
+    );
+    expect(multiSlider.find('Child').props()).toEqual({
+      height: 14,
+      slidersEqual: true,
+      equalColor: undefined,
+      roundedCorners: false,
+      reversed: false,
+      mouseDown: false,
+      zIndex: 0,
+      progress: 4
+    });
   });
 
   it('renders a SlidableZone', () => {
-    const multiSlider = shallow(<MultiSlider {...multiSliderProps} />);
+    const multiSlider = shallow(
+      <MultiSlider {...multiSliderProps}>
+        <Child progress={4} />
+      </MultiSlider>
+    );
     expect(multiSlider.find(SlidableZone).length).toBe(1);
   });
 
   it('handles slider clicks correctly', () => {
     const onSlide = jest.fn();
     const multiSlider = shallow(
-      <MultiSlider {...multiSliderProps} onSlide={onSlide} />
+      <MultiSlider {...multiSliderProps} onSlide={onSlide}>
+        <Child progress={4} />
+      </MultiSlider>
     );
     multiSlider.find(Slider).prop('onSlide')({
       target: {
@@ -98,7 +133,9 @@ describe('MultiSlider.js', () => {
   it('handles mouse moves correctly', () => {
     const onSlide = jest.fn();
     const multiSlider = shallow(
-      <MultiSlider {...multiSliderProps} onSlide={onSlide} />
+      <MultiSlider {...multiSliderProps} onSlide={onSlide}>
+        <Child progress={4} />
+      </MultiSlider>
     );
     const fakeEvent = {
       target: {

@@ -39,7 +39,7 @@ const Progress = ({
       zIndex
     })}
   >
-    {React.cloneElement(Children.only(children), {
+    {children && React.cloneElement(Children.only(children), {
       sliderColor: color,
       reversed,
       mouseDown
