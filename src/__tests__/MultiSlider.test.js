@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import MultiSlider from '../MultiSlider';
 import Slider from '../MultiSlider/Slider';
-import Progress from '../Progress';
 import SlidableZone from '../MultiSlider/SlidableZone';
 
 Enzyme.configure({ adapter: new Adapter() });

@@ -52,7 +52,6 @@ export default class MultiSlider extends PureComponent {
 
   render = () => {
     const {
-      sliders,
       width,
       height,
       slidableZoneSize,
