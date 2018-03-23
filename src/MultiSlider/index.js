@@ -1,8 +1,8 @@
 import React, { PureComponent, Children } from 'react';
 import PropTypes from 'prop-types';
 import getProgressFromMousePosition from '../utils/getProgressFromMousePosition';
-import slidersEqual from '../utils/slidersEqual';
-import sortSliders from '../utils/sortSliders';
+import progressEqual from '../utils/progressEqual';
+import sortProgress from '../utils/sortProgress';
 import Slider from './Slider';
 import SlidableZone from './SlidableZone';
 
@@ -77,8 +77,8 @@ export default class MultiSlider extends PureComponent {
       ...props
     } = this.props;
     const childrenArr = Children.toArray(children);
-    const allSlidersEqual = slidersEqual(childrenArr);
-    const sortedChildren = sortSliders(childrenArr);
+    const allProgressEqual = progressEqual(childrenArr);
+    const sortedProgress = sortProgress(childrenArr);
 
     return (
       <Slider
@@ -97,15 +97,15 @@ export default class MultiSlider extends PureComponent {
         {childrenArr.map(child =>
           React.cloneElement(child, {
             height,
-            slidersEqual: allSlidersEqual,
+            progressEqual: allProgressEqual,
             equalColor,
             roundedCorners,
             reversed,
             mouseDown: this.state.mouseDown,
-            zIndex: sortedChildren.indexOf(child)
+            zIndex: sortedProgress.indexOf(child)
           })
         )}
-        <SlidableZone size={slidableZoneSize} zIndex={Children.count(children)} />
+        <SlidableZone size={slidableZoneSize} zIndex={childrenArr.length} />
       </Slider>
     );
   };

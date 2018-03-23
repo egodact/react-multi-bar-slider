@@ -11,7 +11,7 @@ const Dot = ({
   icon,
   style,
   iconStyle,
-  sliderColor,
+  progressColor,
   reversed,
   mouseDown,
   children,
@@ -22,7 +22,7 @@ const Dot = ({
     hasIcon={!!icon}
     width={width}
     height={height}
-    color={color || sliderColor}
+    color={color || progressColor}
     reversed={reversed}
     noTransition={mouseDown}
     css={processStyle(style, {
@@ -30,7 +30,7 @@ const Dot = ({
       height,
       color,
       icon,
-      sliderColor,
+      progressColor,
       reversed,
       mouseDown
     })}
@@ -48,7 +48,7 @@ const Dot = ({
           height,
           color,
           icon,
-          sliderColor,
+          progressColor,
           mouseDown
         })}
       />
@@ -66,7 +66,7 @@ Dot.propTypes = {
   icon: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   iconStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  sliderColor: PropTypes.string,
+  progressColor: PropTypes.string,
   reversed: PropTypes.bool,
   mouseDown: PropTypes.bool,
   children: PropTypes.node

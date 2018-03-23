@@ -58,7 +58,7 @@ describe('Progress.js', () => {
   it('passes the correct props to its Dot child when given', () => {
     const progress = shallow(<Progress {...progressProps}><Dot /></Progress>);
     expect(progress.find(Dot).props()).toEqual({
-      sliderColor: 'blue',
+      progressColor: 'blue',
       reversed: false,
       mouseDown: false
     });

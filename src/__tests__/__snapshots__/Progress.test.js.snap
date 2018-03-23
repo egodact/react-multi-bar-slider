@@ -2,6 +2,6 @@
 
 exports[`Progress.js matches the snapshot 1`] = `
 <div
-  className="css-1e1wc7 progress"
+  className="css-fc62n7 progress"
 />
 `;

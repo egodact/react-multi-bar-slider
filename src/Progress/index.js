@@ -8,7 +8,7 @@ const Progress = ({
   progress,
   style,
   height,
-  slidersEqual,
+  progressEqual,
   equalColor,
   roundedCorners,
   reversed,
@@ -22,7 +22,7 @@ const Progress = ({
     color={color}
     progress={progress}
     height={height}
-    equal={slidersEqual}
+    equal={progressEqual}
     equalColor={equalColor}
     roundedCorners={roundedCorners}
     reversed={reversed}
@@ -32,7 +32,7 @@ const Progress = ({
       color,
       progress,
       height,
-      slidersEqual,
+      progressEqual,
       equalColor,
       roundedCorners,
       reversed,
@@ -43,7 +43,7 @@ const Progress = ({
   >
     {children && Children.map(children, child =>
       React.cloneElement(child, {
-        sliderColor: color,
+        progressColor: color,
         reversed,
         mouseDown
       })
@@ -61,7 +61,7 @@ Progress.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]).isRequired,
-  slidersEqual: PropTypes.bool,
+  progressEqual: PropTypes.bool,
   equalColor: PropTypes.string,
   roundedCorners: PropTypes.bool,
   reversed: PropTypes.bool,

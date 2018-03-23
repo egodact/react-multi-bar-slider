@@ -1,8 +1,8 @@
-import sortSliders from '../sortSliders';
+import sortProgress from '../sortProgress';
 
-describe('sortSliders.js', () => {
-  it('sorts given sliders correctly', () => {
-    const fakeSliders = [
+describe('sortProgress.js', () => {
+  it('sorts given progress bars correctly', () => {
+    const fakeProgress = [
       {
         props: {
           progress: 56
@@ -19,7 +19,7 @@ describe('sortSliders.js', () => {
         }
       }
     ];
-    expect(sortSliders(fakeSliders)).toEqual([
+    expect(sortProgress(fakeProgress)).toEqual([
       {
         props: {
           progress: 94
@@ -38,8 +38,8 @@ describe('sortSliders.js', () => {
     ]);
   });
 
-  it('doesn\'t modify the sliders array', () => {
-    const fakeSliders = [
+  it('doesn\'t modify the progress bar array', () => {
+    const fakeProgress = [
       {
         props: {
           progress: 45
@@ -51,7 +51,7 @@ describe('sortSliders.js', () => {
         }
       }
     ];
-    sortSliders(fakeSliders);
-    expect(fakeSliders[0].props.progress).toBe(45);
+    sortProgress(fakeProgress);
+    expect(fakeProgress[0].props.progress).toBe(45);
   });
 });

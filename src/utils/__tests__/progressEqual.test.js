@@ -1,8 +1,8 @@
-import slidersEqual from '../slidersEqual';
+import progressEqual from '../progressEqual';
 
-describe('slidersEqual.js', () => {
-  it('returns true when all sliders are equal', () => {
-    const fakeSliders = [
+describe('progressEqual.js', () => {
+  it('returns true when all progress bars are equal', () => {
+    const fakeProgress = [
       {
         props: {
           progress: 56
@@ -19,11 +19,11 @@ describe('slidersEqual.js', () => {
         }
       }
     ];
-    expect(slidersEqual(fakeSliders)).toBe(true);
+    expect(progressEqual(fakeProgress)).toBe(true);
   });
 
-  it('returns false when not all sliders are equal', () => {
-    const fakeSliders = [
+  it('returns false when not all progress bars are equal', () => {
+    const fakeProgress = [
       {
         props: {
           progress: 56
@@ -40,6 +40,6 @@ describe('slidersEqual.js', () => {
         }
       }
     ];
-    expect(slidersEqual(fakeSliders)).toBe(false);
+    expect(progressEqual(fakeProgress)).toBe(false);
   });
 });

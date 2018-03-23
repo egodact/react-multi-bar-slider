@@ -90,7 +90,7 @@ describe('MultiSlider.js', () => {
     );
     expect(multiSlider.find('Child').props()).toEqual({
       height: 14,
-      slidersEqual: true,
+      progressEqual: true,
       equalColor: undefined,
       roundedCorners: false,
       reversed: false,
