@@ -60,6 +60,13 @@ describe('MultiSlider.js', () => {
     expect(multiSlider.find(Slider).length).toBe(1);
   });
 
+  it('passes on undocumented props to the Slider', () => {
+    const multiSlider = shallow(
+      <MultiSlider {...multiSliderProps} foo="bar" />
+    );
+    expect(multiSlider.find(Slider).prop('foo')).toBe('bar');
+  });
+
   it('renders a Progress for every given slider', () => {
     const multiSlider = shallow(<MultiSlider {...multiSliderProps} />);
     expect(multiSlider.find(Progress).length).toBe(2);

@@ -44,4 +44,9 @@ describe('Slider.js', () => {
     const slider = shallow(<Slider {...sliderProps}>Foo</Slider>);
     expect(slider.find(StyledSlider).length).toBe(1);
   });
+
+  it('passes on undocumented props to the StyledSlider', () => {
+    const slider = shallow(<Slider {...sliderProps} foo="bar">Foo</Slider>);
+    expect(slider.find(StyledSlider).prop('foo')).toBe('bar');
+  });
 });
