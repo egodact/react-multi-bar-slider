@@ -14,7 +14,8 @@ const Slider = ({
   onMouseMove,
   roundedCorners,
   readOnly,
-  children
+  children,
+  ...props
 }) => (
   <StyledSlider
     width={width}
@@ -34,6 +35,7 @@ const Slider = ({
     onMouseUp={onMouseMoveDeactivate}
     onMouseLeave={onMouseMoveDeactivate}
     onMouseMove={onMouseMove}
+    {...props}
   >
     {children}
   </StyledSlider>
