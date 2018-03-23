@@ -115,3 +115,6 @@ All other props (not documented here) will be passed on to the root element.
 #### How custom styles work
 When a function is passed to a `style` prop rather than an object, it is expected to return an object.
 The style function will be called with all props that that component has (except for the `style` and `children` props and any internal callbacks). The return value of the function will be used as style (see the [demo repo](https://github.com/rafaelklaessen/react-multi-bar-slider-demo) for an example).
+
+## Caveats
+When the `MultiSlider`, `Progress` or `Dot` components are wrapped with glamorous (eg `glamorous(MultiSlider)`), glamorous breaks. I don't know how to fix this, so don't wrap them :)
