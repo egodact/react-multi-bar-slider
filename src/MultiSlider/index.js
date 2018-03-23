@@ -16,7 +16,7 @@ export default class MultiSlider extends PureComponent {
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-    onSlide: PropTypes.func.isRequired,
+    onSlide: PropTypes.func,
     roundedCorners: PropTypes.bool,
     reversed: PropTypes.bool,
     readOnly: PropTypes.bool,
@@ -35,6 +35,14 @@ export default class MultiSlider extends PureComponent {
   };
 
   state = { mouseDown: false };
+
+  componentDidMount = () => {
+    if (!this.props.readOnly && !this.props.onSlide) {
+      console.error(
+        '[MultiSlider] No onSlide callback provided, but slider is not read-only!'
+      );
+    }
+  };
 
   handleSlide = (e) => {
     const { onSlide, reversed, readOnly } = this.props;
