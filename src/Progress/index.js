@@ -47,6 +47,8 @@ const Progress = ({
   </StyledProgress>
 );
 
+Progress.displayName = 'Progress';
+
 Progress.propTypes = {
   color: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,

@@ -53,6 +53,8 @@ const Dot = ({
   </StyledDot>
 );
 
+Dot.displayName = 'Dot';
+
 Dot.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

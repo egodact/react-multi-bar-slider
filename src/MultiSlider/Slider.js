@@ -41,6 +41,8 @@ const Slider = ({
   </StyledSlider>
 );
 
+Slider.displayName = 'Slider';
+
 Slider.propTypes = {
   width: PropTypes.oneOfType([
     PropTypes.string,

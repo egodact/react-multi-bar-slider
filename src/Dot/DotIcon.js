@@ -11,6 +11,8 @@ const DotIcon = glamorous.img({
   height
 }));
 
+DotIcon.displayName = 'DotIcon';
+
 DotIcon.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

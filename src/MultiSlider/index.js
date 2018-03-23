@@ -7,6 +7,8 @@ import Slider from './Slider';
 import SlidableZone from './SlidableZone';
 
 export default class MultiSlider extends PureComponent {
+  static displayName = 'MultiSlider';
+
   static propTypes = {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
