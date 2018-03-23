@@ -61,9 +61,11 @@ export default class MultiSlider extends PureComponent {
       backgroundColor,
       equalColor,
       style,
+      onSlide, // eslint-disable-line
       roundedCorners,
       reversed,
-      readOnly
+      readOnly,
+      ...props
     } = this.props;
     const allSlidersEqual = slidersEqual(sliders);
     const sortedSliders = sortSliders(sliders);
@@ -80,6 +82,7 @@ export default class MultiSlider extends PureComponent {
         onMouseMove={this.handleMouseMove}
         roundedCorners={roundedCorners}
         readOnly={readOnly}
+        {...props}
       >
         {sliders.map((slider, i) =>
           <Progress

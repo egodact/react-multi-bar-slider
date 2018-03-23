@@ -105,6 +105,8 @@ Prop | Description | Type | Default
 `reversed` | When set to `true`, the slider is reversed | `bool` | `false`
 `readOnly` | When set to `true`, the slider can't be updated | `bool` | `false`
 
+All other props (not documented here) will be passed on to the root element.
+
 #### The slider prop type
 Field | Description | Type | Default
 ----- | ----------- | ---- | -------
