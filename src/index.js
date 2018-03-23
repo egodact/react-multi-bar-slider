@@ -4,14 +4,14 @@ import getProgressFromMousePosition from './utils/getProgressFromMousePosition';
 import slidersEqual from './utils/slidersEqual';
 import sortSliders from './utils/sortSliders';
 import Slider from './Slider';
-import Progress from './Progress';
-import Dot from './Dot';
+import ProgressComponent from './Progress';
+import DotComponent from './Dot';
 import SlidableZone from './SlidableZone';
 
-export default class MultiSlider extends PureComponent {
-  static Progress = Progress;
-  static Dot = Dot;
+export const Progress = ProgressComponent;
+export const Dot = DotComponent;
 
+export default class MultiSlider extends PureComponent {
   static propTypes = {
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
