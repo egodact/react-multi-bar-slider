@@ -48,6 +48,11 @@ describe('Dot.js', () => {
     expect(dot.find(StyledDot).prop('foo')).toBe('bar');
   });
 
+  it('renders its children', () => {
+    const dot = shallow(<Dot {...dotProps}><span /></Dot>);
+    expect(dot.find('span').length).toBe(1);
+  });
+
   it('renders a DotIcon when an icon is given', () => {
     const dot = shallow(<Dot {...dotProps} />);
     expect(dot.find(DotIcon).length).toBe(0);

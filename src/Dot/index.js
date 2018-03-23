@@ -14,6 +14,7 @@ const Dot = ({
   sliderColor,
   reversed,
   mouseDown,
+  children,
   ...props
 }) => (
   <StyledDot
@@ -52,6 +53,7 @@ const Dot = ({
         })}
       />
     )}
+    {children}
   </StyledDot>
 );
 
@@ -66,7 +68,8 @@ Dot.propTypes = {
   iconStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   sliderColor: PropTypes.string,
   reversed: PropTypes.bool,
-  mouseDown: PropTypes.bool
+  mouseDown: PropTypes.bool,
+  children: PropTypes.node
 };
 
 export default Dot;

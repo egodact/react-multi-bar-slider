@@ -41,11 +41,13 @@ const Progress = ({
     })}
     {...props}
   >
-    {children && React.cloneElement(Children.only(children), {
-      sliderColor: color,
-      reversed,
-      mouseDown
-    })}
+    {children && Children.map(children, child =>
+      React.cloneElement(child, {
+        sliderColor: color,
+        reversed,
+        mouseDown
+      })
+    )}
   </StyledProgress>
 );
 
@@ -65,7 +67,7 @@ Progress.propTypes = {
   reversed: PropTypes.bool,
   mouseDown: PropTypes.bool,
   zIndex: PropTypes.number,
-  children: PropTypes.element
+  children: PropTypes.node
 };
 
 export default Progress;

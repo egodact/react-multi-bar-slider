@@ -50,12 +50,13 @@ describe('Progress.js', () => {
     expect(progress.find(StyledProgress).prop('foo')).toBe('bar');
   });
 
+  it('renders all children', () => {
+    const progress = shallow(<Progress {...progressProps}><span /></Progress>);
+    expect(progress.find('span').length).toBe(1);
+  });
+
   it('passes the correct props to its Dot child when given', () => {
-    const progress = shallow(
-      <Progress {...progressProps}>
-        <Dot />
-      </Progress>
-    );
+    const progress = shallow(<Progress {...progressProps}><Dot /></Progress>);
     expect(progress.find(Dot).props()).toEqual({
       sliderColor: 'blue',
       reversed: false,
