@@ -38,6 +38,7 @@ export default class MultiSlider extends PureComponent {
 
   componentDidMount = () => {
     if (!this.props.readOnly && !this.props.onSlide) {
+      // eslint-disable-next-line
       console.error(
         '[MultiSlider] No onSlide callback provided, but slider is not read-only!'
       );

@@ -14,7 +14,8 @@ const Progress = ({
   reversed,
   mouseDown,
   zIndex,
-  children
+  children,
+  ...props
 }) => (
   <StyledProgress
     className="progress"
@@ -38,6 +39,7 @@ const Progress = ({
       mouseDown,
       zIndex
     })}
+    {...props}
   >
     {children && React.cloneElement(Children.only(children), {
       sliderColor: color,

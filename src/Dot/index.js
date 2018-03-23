@@ -13,7 +13,8 @@ const Dot = ({
   iconStyle,
   sliderColor,
   reversed,
-  mouseDown
+  mouseDown,
+  ...props
 }) => (
   <StyledDot
     className="dot"
@@ -32,6 +33,7 @@ const Dot = ({
       reversed,
       mouseDown
     })}
+    {...props}
   >
     {icon && (
       <DotIcon

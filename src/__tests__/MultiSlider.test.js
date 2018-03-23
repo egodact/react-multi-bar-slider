@@ -82,7 +82,7 @@ describe('MultiSlider.js', () => {
     expect(multiSlider.find(Slider).prop('foo')).toBe('bar');
   });
 
-  it('passes the correct props to its children', () => {
+  it('passes the correct props to its Progress children', () => {
     const multiSlider = shallow(
       <MultiSlider {...multiSliderProps}>
         <Child progress={4} />

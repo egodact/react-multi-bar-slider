@@ -43,6 +43,11 @@ describe('Dot.js', () => {
     expect(dot.find(StyledDot).length).toBe(1);
   });
 
+  it('passes on undocumented props to the StyledProgress', () => {
+    const dot = shallow(<Dot {...dotProps} foo="bar" />);
+    expect(dot.find(StyledDot).prop('foo')).toBe('bar');
+  });
+
   it('renders a DotIcon when an icon is given', () => {
     const dot = shallow(<Dot {...dotProps} />);
     expect(dot.find(DotIcon).length).toBe(0);

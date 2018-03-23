@@ -45,7 +45,12 @@ describe('Progress.js', () => {
     expect(progress.find(StyledProgress).length).toBe(1);
   });
 
-  it('passes the correct props to its dot child when given', () => {
+  it('passes on undocumented props to the StyledProgress', () => {
+    const progress = shallow(<Progress {...progressProps} foo="bar" />);
+    expect(progress.find(StyledProgress).prop('foo')).toBe('bar');
+  });
+
+  it('passes the correct props to its Dot child when given', () => {
     const progress = shallow(
       <Progress {...progressProps}>
         <Dot />

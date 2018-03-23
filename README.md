@@ -13,31 +13,21 @@ See the [demo repo](https://github.com/rafaelklaessen/react-multi-bar-slider-dem
 
 ### Basic example
 ```javascript
-import MultiSlider from 'react-multi-bar-slider';
+import MultiSlider, { Progress } from 'react-multi-bar-slider';
 
 export default class App extends Component {
   state = {
     progress: 10
   };
 
-  onSlide = newProgress => this.setState({ progress: newProgress });
+  handleSlide = newProgress => this.setState({ progress: newProgress });
 
   render() {
     return (
-      <MultiSlider
-        sliders={[
-          {
-            color: 'green',
-            progress: this.state.progress,
-            dot: true
-          },
-          {
-            color: 'purple',
-            progress: 45
-          }
-        ]}
-        onSlide={this.onSlide}
-      />
+      <MultiSlider onSlide={this.handleSlide}>
+        <Progress color="green" progress={this.state.progress} />
+        <Progress color="purple" progress={45} />
+      </MultiSlider>
     );
   }
 }
@@ -45,44 +35,35 @@ export default class App extends Component {
 
 ### Advanced example
 ```javascript
-import MultiSlider from 'react-multi-bar-slider';
+import MultiSlider, { Progress, Dot } from 'react-multi-bar-slider';
 
 export default class App extends Component {
   state = {
     progress: 10
   };
 
-  onSlide = newProgress => this.setState({ progress: newProgress });
+  handleSlide = newProgress => this.setState({ progress: newProgress });
 
   render() {
     return (
       <MultiSlider
-        sliders={[
-          {
-            color: 'green',
-            progress: this.state.progress
-            dot: {
-              color: 'grey'
-            }
-          },
-          {
-            color: 'purple',
-            progress: 45,
-            dot: {
-              color: 'grey'
-            }
-          }
-        ]}
         width={600}
         height={20}
         slidableZoneSize={40}
         backgroundColor="bisque"
         equalColor="blue"
         style={{ marginBottom: 40 }}
-        onSlide={this.onSlide}
+        onSlide={this.handleSlide}
         roundedCorners
         reversed
       />
+        <Progress color="green" progress={this.state.progress}>
+          <Dot color="grey" />
+        </Progress>
+        <Progress color="purple" progress={45}>
+          <Dot color="grey" />
+        </Progress>
+      </MultiSlider>
     );
   }
 }
@@ -91,9 +72,9 @@ export default class App extends Component {
 ## Props
 `*` = Required
 
+### `MultiSlider`
 Prop | Description | Type | Default
 ---- | ----------- | ---- | -------
-`sliders*` | Slider bars (see below for full prop type) | `array` |
 `width` | Width of the slider | `number` or `string` | `100%`
 `height` | Height of the slider | `number` or `string` | `14px`
 `slidableZoneSize` | Size of the zone in which sliders can be dragged | `number` or `string` | `7px`,
@@ -104,28 +85,31 @@ Prop | Description | Type | Default
 `roundedCorners` | When set to `true`, the slider has rounded corners | `bool` | `false`
 `reversed` | When set to `true`, the slider is reversed | `bool` | `false`
 `readOnly` | When set to `true`, the slider can't be updated | `bool` | `false`
+`children` | `node` | The progress bars that are shown in the slider |
 
 All other props (not documented here) will be passed on to the root element.
 
-#### The slider prop type
-Field | Description | Type | Default
+### `Progress`
+Prop | Description | Type | Default
 ----- | ----------- | ---- | -------
-`color*` | Color of the bar | `string` |
-`progress*` | Progress of the bar | `number` |
-`style` | Custom style for the bar | `object` of `function` |
-`dot` | The slider dot (see below) | `bool` or `function` |
+`color*` | Color of the progress bar | `string` |
+`progress*` | Progress of the progress bar | `number` |
+`style` | Custom style for the progress bar | `object` or `function` |
+`children` | The slider dot (see below) | `element` |
 
-#### The dot prop type
-`slider.dot` can be either a boolean or an object. When it's `true`, it'll show a standard dot.
-The object has the following fields:
+All other props (not documented here) will be passed on to the root element.
 
-Field | Description | Type | Default
+### `Dot`
+Prop | Description | Type | Default
 ----- | ----------- | ---- | -------
 `width` | Width of the dot | `number` or `string` | `50` when the dot has an icon, `28` if not
 `height` | Height of the dot | `number` or `string` | `50` when the dot has an icon, `28` if not
 `color` | Color of the dot | `string` |
 `icon` | URL of the image to use as dot icon | `string` |
 `style` | Custom style for the dot | `object` or `function` |
+`iconStyle` | Custom style for the dot icon | `object` or `function` |
+
+All other props (not documented here) will be passed on to the root element.
 
 #### How custom styles work
 When a function is passed to a `style` prop rather than an object, it is expected to return an object.
