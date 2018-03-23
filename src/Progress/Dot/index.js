@@ -19,7 +19,7 @@ const Dot = ({ dot, sliderColor, reversed, mouseDown }) => (
       <DotIcon
         className="icon"
         src={dot.icon}
-        width={dot.width }
+        width={dot.width}
         height={dot.height}
         draggable={false}
         css={processStyle(dot.iconStyle, { dot, sliderColor, mouseDown })}

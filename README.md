@@ -1,7 +1,7 @@
 # react-multi-bar-slider
 Slider component with multiple bars for React.
 
-[Demo](https://github.com/rafaelklaessen/react-multi-bar-slider-demo)
+[Demo repo](https://github.com/rafaelklaessen/react-multi-bar-slider-demo)
 
 ![Multi slider screenshot](https://github.com/rafaelklaessen/react-multi-bar-slider/raw/master/screenshots/screenshot.png "Screenshot of the multi slider demo")
 
@@ -9,7 +9,7 @@ Slider component with multiple bars for React.
 `yarn add react-multi-bar-slider` or `npm install --save react-multi-bar-slider`
 
 ## Usage
-See the [demo](https://github.com/rafaelklaessen/react-multi-bar-slider-demo).
+See the [demo repo](https://github.com/rafaelklaessen/react-multi-bar-slider-demo).
 
 ### Basic example
 ```javascript
@@ -91,16 +91,40 @@ export default class App extends Component {
 ## Props
 `*` = Required
 
-Prop | Description | default
----- | ----------- | -------
-`sliders*` | Slider bars (see below for full prop type) |
-`width` | Width of the slider | `100%`
-`height` | Height of the slider | `14px`
-`slidableZoneSize` | Size of the zone in which sliders can be dragged | `7px`,
-`backgroundColor` | Background color of the slider | `#EEEEEE`
-`equalColor` | Color of all bars when their values are equal |
-`style` | Custom style for the slider | `{}`
-`onSlide*` | Callback that gets called when the progress is updated |
-`roundedCorners` | When set to `true`, the slider has rounded corners | `false`
-`reversed` | When set to `true`, the slider is reversed | `false`
-`readOnly` | When set to `true`, the slider can't be updated | `false`
+Prop | Description | Type | Default
+---- | ----------- | ---- | -------
+`sliders*` | Slider bars (see below for full prop type) | `array` |
+`width` | Width of the slider | `number` or `string` | `100%`
+`height` | Height of the slider | `number` or `string` | `14px`
+`slidableZoneSize` | Size of the zone in which sliders can be dragged | `number` or `string` | `7px`,
+`backgroundColor` | Background color of the slider | `string` | `#EEEEEE`
+`equalColor` | Color of all bars when their values are equal | `string` |
+`style` | Custom style for the slider | `object` or `function` | `{}`
+`onSlide*` | Callback that gets called when the progress is updated | `function` |
+`roundedCorners` | When set to `true`, the slider has rounded corners | `bool` | `false`
+`reversed` | When set to `true`, the slider is reversed | `bool` | `false`
+`readOnly` | When set to `true`, the slider can't be updated | `bool` | `false`
+
+#### The slider prop type
+Field | Description | Type | Default
+----- | ----------- | ---- | -------
+`color*` | Color of the bar | `string` |
+`progress*` | Progress of the bar | `number` |
+`style` | Custom style for the bar | `object` of `function` |
+`dot` | The slider dot (see below) | `bool` or `function` |
+
+#### The dot prop type
+`slider.dot` can be either a boolean or an object. When it's `true`, it'll show a standard dot.
+The object has the following fields:
+
+Field | Description | Type | Default
+----- | ----------- | ---- | -------
+`width` | Width of the dot | `number` or `string` | `50` when the dot has an icon, `28` if not
+`height` | Height of the dot | `number` or `string` | `50` when the dot has an icon, `28` if not
+`color` | Color of the dot | `string` |
+`icon` | URL of the image to use as dot icon | `string` |
+`style` | Custom style for the dot | `object` or `function` |
+
+#### How custom styles work
+When a function is passed to a `style` prop rather than an object, it is expected to return an object.
+The style function will be called with all props that that component has (except for the `style` prop and any internal callbacks). The return value of the function will be used as style (see the [demo repo](https://github.com/rafaelklaessen/react-multi-bar-slider-demo) for an example).

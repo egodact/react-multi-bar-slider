@@ -13,7 +13,7 @@ export default class MultiSlider extends PureComponent {
     sliders: PropTypes.arrayOf(sliderPropType).isRequired,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    slidableZoneSize: PropTypes.number,
+    slidableZoneSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
