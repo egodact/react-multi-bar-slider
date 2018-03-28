@@ -149,12 +149,12 @@ describe('MultiSlider.js', () => {
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
     expect(onSlide.mock.calls.length).toBe(0);
 
-    multiSlider.find(Slider).prop('onMouseMoveActivate')();
+    multiSlider.find(Slider).prop('onMouseMoveActivate')(fakeEvent);
     multiSlider.update();
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
     expect(onSlide.mock.calls[0][0]).toBe(89);
 
-    multiSlider.find(Slider).prop('onMouseMoveDeactivate')();
+    multiSlider.find(Slider).prop('onMouseMoveDeactivate')(fakeEvent);
     multiSlider.update();
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
     expect(onSlide.mock.calls.length).toBe(1);

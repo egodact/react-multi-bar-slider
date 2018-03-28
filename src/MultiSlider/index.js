@@ -1,4 +1,4 @@
-import React, { PureComponent, Children } from 'react';
+import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import getProgressFromMousePosition from '../utils/getProgressFromMousePosition';
 import progressEqual from '../utils/progressEqual';
@@ -6,7 +6,7 @@ import sortProgress from '../utils/sortProgress';
 import Slider from './Slider';
 import SlidableZone from './SlidableZone';
 
-export default class MultiSlider extends PureComponent {
+export default class MultiSlider extends Component {
   static displayName = 'MultiSlider';
 
   static propTypes = {
@@ -17,6 +17,8 @@ export default class MultiSlider extends PureComponent {
     equalColor: PropTypes.string,
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
     onSlide: PropTypes.func,
+    onDragStart: PropTypes.func,
+    onDragStop: PropTypes.func,
     roundedCorners: PropTypes.bool,
     reversed: PropTypes.bool,
     readOnly: PropTypes.bool,
@@ -53,8 +55,33 @@ export default class MultiSlider extends PureComponent {
     onSlide(newProgress);
   };
 
-  handleMouseMoveActivate = () => this.setState({ mouseDown: true });
-  handleMouseMoveDeactivate = () => this.setState({ mouseDown: false });
+  handleSliderClick = (e) => {
+    const { onDragStart, onDragStop, reversed } = this.props;
+    const progress = getProgressFromMousePosition(e, reversed);
+    if (onDragStart) onDragStart(progress);
+    this.handleSlide(e);
+    if (onDragStop) onDragStop(progress);
+  };
+
+  handleMouseMoveActivate = (e) => {
+    this.setState({ mouseDown: true });
+
+    const { onDragStart, reversed } = this.props;
+    if (onDragStart) {
+      const progress = getProgressFromMousePosition(e, reversed);
+      onDragStart(progress);
+    }
+  };
+
+  handleMouseMoveDeactivate = (e) => {
+    this.setState({ mouseDown: false });
+
+    const { onDragStop, reversed } = this.props;
+    if (onDragStop) {
+      const progress = getProgressFromMousePosition(e, reversed);
+      onDragStop(progress);
+    }
+  };
 
   handleMouseMove = (e) => {
     if (!this.state.mouseDown) return;
@@ -86,7 +113,7 @@ export default class MultiSlider extends PureComponent {
         height={height}
         backgroundColor={backgroundColor}
         style={style}
-        onSlide={this.handleSlide}
+        onSlide={this.handleSliderClick}
         onMouseMoveActivate={this.handleMouseMoveActivate}
         onMouseMoveDeactivate={this.handleMouseMoveDeactivate}
         onMouseMove={this.handleMouseMove}
