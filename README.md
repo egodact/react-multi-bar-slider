@@ -54,6 +54,8 @@ export default class App extends Component {
         equalColor="blue"
         style={{ marginBottom: 40 }}
         onSlide={this.handleSlide}
+        onDragStart={progress => console.log(`Started dragging: ${progress}%`)}
+        onDragStop={progress => console.log(`Stopped dragging: ${progress}%`)}
         roundedCorners
         reversed
       />
@@ -80,8 +82,10 @@ Prop | Description | Type | Default
 `slidableZoneSize` | Size of the zone in which sliders can be dragged | `number` or `string` | `7px`,
 `backgroundColor` | Background color of the slider | `string` | `#EEEEEE`
 `equalColor` | Color of all bars when their values are equal | `string` |
-`style` | Custom style for the slider | `object` or `function` | `{}`
-`onSlide*` | Callback that gets called when the progress is updated | `function` |
+`style` | Custom style for the slider <br> *Signature:* <br> `function(props: object) => object` | `object` or `function` | `{}`
+`onSlide` | Callback that is fired when the progress was set <br> *Signature:* <br> `function(progress: number) => void` | `function` |
+`onDragStart` | Callback function that is fired when the slider has begun to move <br> *Signature:* <br> `function(progress: number) => void` | `function` |
+`onDragStop`| Callback function that is fired when the slide has stopped moving <br> *Signature:* <br> `function(progress: number) => void` | `function` |
 `roundedCorners` | When set to `true`, the slider has rounded corners | `bool` | `false`
 `reversed` | When set to `true`, the slider is reversed | `bool` | `false`
 `readOnly` | When set to `true`, the slider can't be updated | `bool` | `false`
@@ -94,7 +98,7 @@ Prop | Description | Type | Default
 ----- | ----------- | ---- | -------
 `color*` | Color of the progress bar | `string` |
 `progress*` | Progress of the progress bar | `number` |
-`style` | Custom style for the progress bar | `object` or `function` |
+`style` | Custom style for the progress bar <br> *Signature:* <br> `function(props: object) => object` | `object` or `function` |
 `children` | The slider dot (or any other children) | `node` |
 
 All other props (not documented here) will be passed on to the root element.
@@ -106,8 +110,8 @@ Prop | Description | Type | Default
 `height` | Height of the dot | `number` or `string` | `50` when the dot has an icon, `28` if not
 `color` | Color of the dot | `string` |
 `icon` | URL of the image to use as dot icon | `string` |
-`style` | Custom style for the dot | `object` or `function` |
-`iconStyle` | Custom style for the dot icon | `object` or `function` |
+`style` | Custom style for the dot <br> *Signature:* <br> `function(props: object) => object` | `object` or `function` |
+`iconStyle` | Custom style for the dot icon <br> *Signature:* <br> `function(props: object) => object` | `object` or `function` |
 `children` | Children of the dot | `node` |
 
 All other props (not documented here) will be passed on to the root element.

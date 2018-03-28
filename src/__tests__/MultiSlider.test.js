@@ -116,7 +116,8 @@ describe('MultiSlider.js', () => {
         <Child progress={4} />
       </MultiSlider>
     );
-    multiSlider.find(Slider).prop('onSlide')({
+    multiSlider.find(Slider).prop('onMouseMoveActivate')();
+    multiSlider.find(Slider).prop('onMouseMoveDeactivate')({
       target: {
         classList: [],
         getBoundingClientRect: () => ({
@@ -149,14 +150,47 @@ describe('MultiSlider.js', () => {
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
     expect(onSlide.mock.calls.length).toBe(0);
 
-    multiSlider.find(Slider).prop('onMouseMoveActivate')();
+    multiSlider.find(Slider).prop('onMouseMoveActivate')(fakeEvent);
     multiSlider.update();
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
     expect(onSlide.mock.calls[0][0]).toBe(89);
 
-    multiSlider.find(Slider).prop('onMouseMoveDeactivate')();
+    multiSlider.find(Slider).prop('onMouseMoveDeactivate')(fakeEvent);
+    expect(onSlide.mock.calls.length).toBe(2);
     multiSlider.update();
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
-    expect(onSlide.mock.calls.length).toBe(1);
+    expect(onSlide.mock.calls.length).toBe(2);
+  });
+
+  it('calls onDragStart and onDragStop correctly', () => {
+    const onDragStart = jest.fn();
+    const onDragStop = jest.fn();
+    const multiSlider = shallow(
+      <MultiSlider
+        {...multiSliderProps}
+        onDragStart={onDragStart}
+        onDragStop={onDragStop}
+      >
+        <Child progress={4} />
+      </MultiSlider>
+    );
+    const fakeEvent = {
+      target: {
+        classList: [],
+        getBoundingClientRect: () => ({
+          left: 154,
+          width: 876
+        })
+      },
+      pageX: 933.64
+    };
+    multiSlider.instance().handleMouseMoveActivate(fakeEvent);
+    expect(onDragStart.mock.calls.length).toBe(1);
+    expect(onDragStop.mock.calls.length).toBe(0);
+    expect(onDragStart.mock.calls[0][0]).toBe(89);
+    multiSlider.instance().handleMouseMoveDeactivate(fakeEvent);
+    expect(onDragStart.mock.calls.length).toBe(1);
+    expect(onDragStop.mock.calls.length).toBe(1);
+    expect(onDragStop.mock.calls[0][0]).toBe(89);
   });
 });
