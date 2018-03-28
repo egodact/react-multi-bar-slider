@@ -83,9 +83,9 @@ Prop | Description | Type | Default
 `backgroundColor` | Background color of the slider | `string` | `#EEEEEE`
 `equalColor` | Color of all bars when their values are equal | `string` |
 `style` | Custom style for the slider <br> *Signature:* <br> `function(props: object) => object` | `object` or `function` | `{}`
-`onSlide` | Callback that gets called when the progress is updated <br> *Signature:* <br> `function(progress: number) => void` | `function` |
-`onDragStart` | Callback function that is fired when the slider has begun to move. <br> *Signature:* <br> `function(progress: number) => void` | `function` |
-`onDragStop`| Callback function that is fired when the slide has stopped moving. <br> *Signature:* <br> `function(progress: number) => void` | `function` |
+`onSlide` | Callback that is fired when the progress was set <br> *Signature:* <br> `function(progress: number) => void` | `function` |
+`onDragStart` | Callback function that is fired when the slider has begun to move <br> *Signature:* <br> `function(progress: number) => void` | `function` |
+`onDragStop`| Callback function that is fired when the slide has stopped moving <br> *Signature:* <br> `function(progress: number) => void` | `function` |
 `roundedCorners` | When set to `true`, the slider has rounded corners | `bool` | `false`
 `reversed` | When set to `true`, the slider is reversed | `bool` | `false`
 `readOnly` | When set to `true`, the slider can't be updated | `bool` | `false`
