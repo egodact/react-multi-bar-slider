@@ -3,7 +3,6 @@
 exports[`MultiSlider.js matches the snapshot 1`] = `
 <div
   className="css-1i6y0pe"
-  onClick={[Function]}
   onMouseDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}

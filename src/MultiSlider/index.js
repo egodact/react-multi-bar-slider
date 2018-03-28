@@ -55,15 +55,8 @@ export default class MultiSlider extends Component {
     onSlide(newProgress);
   };
 
-  handleSliderClick = (e) => {
-    const { onDragStart, onDragStop, reversed } = this.props;
-    const progress = getProgressFromMousePosition(e, reversed);
-    if (onDragStart) onDragStart(progress);
-    this.handleSlide(e);
-    if (onDragStop) onDragStop(progress);
-  };
-
   handleMouseMoveActivate = (e) => {
+    if (this.state.mouseDown) return;
     this.setState({ mouseDown: true });
 
     const { onDragStart, reversed } = this.props;
@@ -74,7 +67,10 @@ export default class MultiSlider extends Component {
   };
 
   handleMouseMoveDeactivate = (e) => {
+    if (!this.state.mouseDown) return;
     this.setState({ mouseDown: false });
+
+    this.handleSlide(e);
 
     const { onDragStop, reversed } = this.props;
     if (onDragStop) {
@@ -113,7 +109,6 @@ export default class MultiSlider extends Component {
         height={height}
         backgroundColor={backgroundColor}
         style={style}
-        onSlide={this.handleSliderClick}
         onMouseMoveActivate={this.handleMouseMoveActivate}
         onMouseMoveDeactivate={this.handleMouseMoveDeactivate}
         onMouseMove={this.handleMouseMove}

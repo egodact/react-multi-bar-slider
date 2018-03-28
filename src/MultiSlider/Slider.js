@@ -8,7 +8,6 @@ const Slider = ({
   height,
   backgroundColor,
   style,
-  onSlide,
   onMouseMoveActivate,
   onMouseMoveDeactivate,
   onMouseMove,
@@ -30,7 +29,6 @@ const Slider = ({
       roundedCorners,
       readOnly
     })}
-    onClick={onSlide}
     onMouseDown={onMouseMoveActivate}
     onMouseUp={onMouseMoveDeactivate}
     onMouseLeave={onMouseMoveDeactivate}
@@ -54,7 +52,6 @@ Slider.propTypes = {
   ]).isRequired,
   backgroundColor: PropTypes.string.isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
-  onSlide: PropTypes.func.isRequired,
   onMouseMoveActivate: PropTypes.func.isRequired,
   onMouseMoveDeactivate: PropTypes.func.isRequired,
   onMouseMove: PropTypes.func.isRequired,
