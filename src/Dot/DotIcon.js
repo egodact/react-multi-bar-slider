@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
+import styled from 'react-emotion';
 
-const DotIcon = glamorous.img({
+const DotIcon = styled('img')({
   position: 'absolute',
   transform: 'translateX(-50%)',
   userDrag: 'none',
   userSelect: 'none'
-}, ({ width, height }) => ({
+}, ({ width, height, css }) => ({
   width,
-  height
+  height,
+  ...css
 }));
 
 DotIcon.displayName = 'DotIcon';
@@ -21,7 +22,8 @@ DotIcon.propTypes = {
 
 DotIcon.defaultProps = {
   width: 50,
-  height: 50
+  height: 50,
+  css: null
 };
 
 export default DotIcon;

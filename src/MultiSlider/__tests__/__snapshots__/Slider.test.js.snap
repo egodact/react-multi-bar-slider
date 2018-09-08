@@ -2,12 +2,15 @@
 
 exports[`Slider.js matches the snapshot 1`] = `
 <div
-  className="css-975bpe"
+  className="css-p5eloh"
+  height={20}
   onMouseDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
+  onSlide={[Function]}
   readOnly={false}
+  width={1000}
 >
   Foo
 </div>

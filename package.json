@@ -1,6 +1,6 @@
 {
   "name": "react-multi-bar-slider",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Slider component with multiple bars for React",
   "repository": {
     "type": "git",
@@ -19,8 +19,7 @@
     "react multi slider"
   ],
   "peerDependencies": {
-    "glamor": "^2.x",
-    "glamorous": "^4.x",
+    "emotion": "^9.x",
     "prop-types": "^15.x",
     "react": "^15.3.x || ^16.x",
     "react-dom": "^15.3.x || ^16.x"
@@ -41,17 +40,17 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
+    "emotion": "^9.2.8",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.9.0",
     "eslint-plugin-react": "^7.4.0",
-    "glamor": "^2.20.40",
-    "glamorous": "^4.12.1",
     "jest": "^21.2.1",
     "jest-cli": "^22.4.3",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-emotion": "^9.2.8",
     "react-test-renderer": "^16.2.0",
     "webpack": "^3.8.1"
   }

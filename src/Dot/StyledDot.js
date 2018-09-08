@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
+import styled from 'react-emotion';
 import transition from '../utils/transition';
 
-const StyledDot = glamorous.span({
+const StyledDot = styled('span')({
   position: 'absolute',
   right: 0,
   display: 'block',
   zIndex: 5,
   borderRadius: '50%'
-}, ({ hasIcon, width, height, color, reversed, noTransition }) => ({
+}, ({ hasIcon, width, height, color, reversed, noTransition, css }) => ({
   top: hasIcon ? 0 : '50%',
   left: reversed ? 0 : 'auto',
   right: reversed ? 'auto' : 0,
@@ -18,7 +18,8 @@ const StyledDot = glamorous.span({
   width: hasIcon ? 0 : width,
   height: hasIcon ? 0 : height,
   backgroundColor: hasIcon ? 'transparent' : color,
-  transition: noTransition ? 'none' : transition
+  transition: noTransition ? 'none' : transition,
+  ...css
 }));
 
 StyledDot.propTypes = {
@@ -33,7 +34,8 @@ StyledDot.propTypes = {
 
 StyledDot.defaultProps = {
   width: 28,
-  height: 28
+  height: 28,
+  css: null
 };
 
 export default StyledDot;

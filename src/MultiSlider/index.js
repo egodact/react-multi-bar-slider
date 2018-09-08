@@ -56,6 +56,9 @@ export default class MultiSlider extends Component {
   };
 
   handleMouseMoveActivate = (e) => {
+    const isLeftButton = e.button === 0;
+    if (!isLeftButton) return;
+
     if (this.state.mouseDown) return;
     this.setState({ mouseDown: true });
 
@@ -93,6 +96,8 @@ export default class MultiSlider extends Component {
       equalColor,
       style,
       onSlide, // eslint-disable-line
+      onDragStart, // eslint-disable-line
+      onDragStop, // eslint-disable-line
       roundedCorners,
       reversed,
       readOnly,

@@ -2,6 +2,10 @@
 
 exports[`Dot.js matches the snapshot 1`] = `
 <span
-  className="css-1mk3smr dot"
+  className="dot css-1moydnc"
+  color="green"
+  height={40}
+  reversed={false}
+  width={40}
 />
 `;

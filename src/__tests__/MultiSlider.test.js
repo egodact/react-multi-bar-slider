@@ -116,7 +116,9 @@ describe('MultiSlider.js', () => {
         <Child progress={4} />
       </MultiSlider>
     );
-    multiSlider.find(Slider).prop('onMouseMoveActivate')();
+    multiSlider.find(Slider).prop('onMouseMoveActivate')({
+      button: 0
+    });
     multiSlider.find(Slider).prop('onMouseMoveDeactivate')({
       target: {
         classList: [],
@@ -130,13 +132,18 @@ describe('MultiSlider.js', () => {
     expect(onSlide.mock.calls[0][0]).toBe(89);
   });
 
-  it('handles mouse moves correctly', () => {
-    const onSlide = jest.fn();
+  it('doesn\'t do anything when other mouse buttons than the left mouse button are clicked', () => {
+    const onDragStart = jest.fn();
     const multiSlider = shallow(
-      <MultiSlider {...multiSliderProps} onSlide={onSlide}>
+      <MultiSlider
+        {...multiSliderProps}
+        onSlide={() => {}}
+        onDragStart={onDragStart}
+      >
         <Child progress={4} />
       </MultiSlider>
     );
+
     const fakeEvent = {
       target: {
         classList: [],
@@ -147,6 +154,40 @@ describe('MultiSlider.js', () => {
       },
       pageX: 933.64
     };
+
+    multiSlider.find(Slider).prop('onMouseMoveActivate')({
+      button: 1,
+      ...fakeEvent
+    });
+    expect(onDragStart.mock.calls.length).toBe(0);
+
+    multiSlider.find(Slider).prop('onMouseMoveActivate')({
+      button: 0,
+      ...fakeEvent
+    });
+    expect(onDragStart.mock.calls.length).toBe(1);
+  });
+
+  it('handles mouse moves correctly', () => {
+    const onSlide = jest.fn();
+    const multiSlider = shallow(
+      <MultiSlider {...multiSliderProps} onSlide={onSlide}>
+        <Child progress={4} />
+      </MultiSlider>
+    );
+
+    const fakeEvent = {
+      button: 0,
+      target: {
+        classList: [],
+        getBoundingClientRect: () => ({
+          left: 154,
+          width: 876
+        })
+      },
+      pageX: 933.64
+    };
+
     multiSlider.find(Slider).prop('onMouseMove')(fakeEvent);
     expect(onSlide.mock.calls.length).toBe(0);
 
@@ -174,7 +215,9 @@ describe('MultiSlider.js', () => {
         <Child progress={4} />
       </MultiSlider>
     );
+
     const fakeEvent = {
+      button: 0,
       target: {
         classList: [],
         getBoundingClientRect: () => ({
@@ -184,6 +227,7 @@ describe('MultiSlider.js', () => {
       },
       pageX: 933.64
     };
+
     multiSlider.instance().handleMouseMoveActivate(fakeEvent);
     expect(onDragStart.mock.calls.length).toBe(1);
     expect(onDragStop.mock.calls.length).toBe(0);

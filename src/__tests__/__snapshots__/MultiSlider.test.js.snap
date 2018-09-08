@@ -2,16 +2,19 @@
 
 exports[`MultiSlider.js matches the snapshot 1`] = `
 <div
-  className="css-1i6y0pe"
+  className="css-pbel19"
+  height={14}
   onMouseDown={[Function]}
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
   readOnly={false}
+  width="100%"
 >
   <div />
   <div
-    className="css-1xw21z0"
+    className="css-1srlg56"
+    size={50}
   />
 </div>
 `;

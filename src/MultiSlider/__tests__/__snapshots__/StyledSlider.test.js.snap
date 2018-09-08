@@ -2,7 +2,9 @@
 
 exports[`StyledSlider.js matches the snapshot 1`] = `
 <div
-  className="css-975bpe"
+  className="css-p5eloh"
+  height={20}
   readOnly={false}
+  width={1000}
 />
 `;

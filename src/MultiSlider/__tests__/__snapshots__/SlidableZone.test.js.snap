@@ -2,6 +2,7 @@
 
 exports[`SlidableZone.js matches the snapshot 1`] = `
 <div
-  className="css-t0d97c"
+  className="css-1r9s984"
+  size={40}
 />
 `;

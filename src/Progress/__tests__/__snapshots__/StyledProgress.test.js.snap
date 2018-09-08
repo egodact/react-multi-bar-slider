@@ -2,6 +2,9 @@
 
 exports[`StyledProgress.js matches the snapshot 1`] = `
 <div
-  className="css-jhmfph"
+  className="css-yalmu7"
+  color="green"
+  height={14}
+  reversed={false}
 />
 `;

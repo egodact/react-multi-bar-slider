@@ -2,6 +2,8 @@
 
 exports[`DotIcon.js matches the snapshot 1`] = `
 <img
-  className="css-19tq53f"
+  className="css-1gn67lo"
+  height={45}
+  width={45}
 />
 `;

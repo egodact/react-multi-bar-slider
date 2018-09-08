@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
+import styled from 'react-emotion';
 
-const SlidableZone = glamorous.div({
+const SlidableZone = styled('div')({
   position: 'absolute',
   width: '100%'
 }, ({ size, zIndex }) => ({

@@ -1,34 +1,33 @@
 import PropTypes from 'prop-types';
-import glamorous from 'glamorous';
+import styled from 'react-emotion';
 import transition from '../utils/transition';
 import getHalf from '../utils/getHalf';
 
-const StyledProgress = glamorous.div(
-  {
-    position: 'absolute',
-    top: 0,
-  },
-  ({
-    color,
-    progress,
-    height,
-    equal,
-    equalColor,
-    roundedCorners,
-    reversed,
-    noTransition,
-    zIndex
-  }) => ({
-    left: reversed ? 'auto' : 0,
-    right: reversed ? 0 : 'auto',
-    width: `${progress || 0}%`,
-    height,
-    backgroundColor: equal && equalColor ? equalColor : color,
-    borderRadius: roundedCorners ? getHalf(height) : 0,
-    zIndex,
-    transition: noTransition ? 'none' : transition
-  })
-);
+const StyledProgress = styled('div')({
+  position: 'absolute',
+  top: 0,
+}, ({
+  color,
+  progress,
+  height,
+  equal,
+  equalColor,
+  roundedCorners,
+  reversed,
+  noTransition,
+  zIndex,
+  css
+}) => ({
+  left: reversed ? 'auto' : 0,
+  right: reversed ? 0 : 'auto',
+  width: `${progress || 0}%`,
+  height,
+  backgroundColor: equal && equalColor ? equalColor : color,
+  borderRadius: roundedCorners ? getHalf(height) : 0,
+  zIndex,
+  transition: noTransition ? 'none' : transition,
+  ...css
+}));
 
 StyledProgress.propTypes = {
   color: PropTypes.string.isRequired,
@@ -47,7 +46,8 @@ StyledProgress.propTypes = {
 };
 
 StyledProgress.defaultProps = {
-  equal: false
+  equal: false,
+  css: null
 };
 
 export default StyledProgress;
