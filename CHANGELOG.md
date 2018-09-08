@@ -1,3 +1,8 @@
+# Version 1.2.1
+Released 2018-09-08
+
+- Added `react-emotion` to `peerDependencies`
+
 # Version 1.2.0
 Released 2018-09-08
 
