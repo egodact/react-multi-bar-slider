@@ -1,3 +1,8 @@
+# Version 1.3.0
+Released 2019-05-14
+
+- Added support for touch events
+
 # Version 1.2.1
 Released 2018-09-08
 

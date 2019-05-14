@@ -33,6 +33,10 @@ const Slider = ({
     onMouseUp={onMouseMoveDeactivate}
     onMouseLeave={onMouseMoveDeactivate}
     onMouseMove={onMouseMove}
+    onTouchStart={onMouseMoveActivate}
+    onTouchEnd={onMouseMoveDeactivate}
+    onTouchCancel={onMouseMoveDeactivate}
+    onTouchMove={onMouseMove}
     {...props}
   >
     {children}

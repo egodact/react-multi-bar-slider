@@ -56,7 +56,7 @@ export default class MultiSlider extends Component {
   };
 
   handleMouseMoveActivate = (e) => {
-    const isLeftButton = e.button === 0;
+    const isLeftButton = !e.button || e.button === 0;
     if (!isLeftButton) return;
 
     if (this.state.mouseDown) return;

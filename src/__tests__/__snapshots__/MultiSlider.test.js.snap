@@ -8,6 +8,10 @@ exports[`MultiSlider.js matches the snapshot 1`] = `
   onMouseLeave={[Function]}
   onMouseMove={[Function]}
   onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
   readOnly={false}
   width="100%"
 >

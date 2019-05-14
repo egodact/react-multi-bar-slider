@@ -9,6 +9,10 @@ exports[`Slider.js matches the snapshot 1`] = `
   onMouseMove={[Function]}
   onMouseUp={[Function]}
   onSlide={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
   readOnly={false}
   width={1000}
 >
