@@ -27,6 +27,49 @@ describe('getProgressFromMousePosition', () => {
     expect(result2).toBe(89);
   });
 
+  it('works correctly with touches', () => {
+    const result = getProgressFromMousePosition({
+      target: {
+        classList: [],
+        getBoundingClientRect: () => ({
+          left: 100,
+          width: 1000
+        })
+      },
+      touches: [
+        {
+          clientX: 200
+        }
+      ]
+    });
+    expect(result).toBe(10);
+  });
+
+  it('returns null when progress can\'t be calculated', () => {
+    const result = getProgressFromMousePosition({
+      target: {
+        classList: [],
+        getBoundingClientRect: () => ({
+          left: 100,
+          width: 1000
+        })
+      }
+    });
+    expect(result).toBe(null);
+
+    const result2 = getProgressFromMousePosition({
+      target: {
+        classList: [],
+        getBoundingClientRect: () => ({
+          left: 100,
+          width: 1000
+        })
+      },
+      touches: []
+    });
+    expect(result2).toBe(null);
+  });
+
   it('rounds the percentage', () => {
     const result = getProgressFromMousePosition({
       target: {
