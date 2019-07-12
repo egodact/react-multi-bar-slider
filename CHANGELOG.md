@@ -1,3 +1,8 @@
+# Version 1.4.0
+Released 2019-07-12
+
+- Migrated to Emotion 10
+
 # Version 1.3.1
 Released 2019-05-18
 

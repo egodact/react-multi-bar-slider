@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import transition from '../utils/transition';
 
 const StyledDot = styled('span')({
